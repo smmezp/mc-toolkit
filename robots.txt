@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://smmezp.github.io/mc-toolkit/sitemap.xml

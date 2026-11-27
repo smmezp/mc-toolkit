@@ -1,0 +1,1078 @@
+/*!
+ * MC Toolkit — tool.css
+ * The tool workspace: layout, controls and the guide below it.
+ * Shared by every tool page.
+ * MIT License — https://github.com/smmezp/mc-toolkit
+ */
+
+/* ==================================================================== */
+/* Tool header                                                           */
+/* ==================================================================== */
+
+.tool-hero {
+  padding: clamp(28px, 5vw, 56px) 0 clamp(24px, 3.5vw, 36px);
+}
+
+.breadcrumb {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 16px;
+  padding: 0;
+  list-style: none;
+  font-size: 0.875rem;
+  color: var(--text-3);
+}
+
+.breadcrumb a {
+  color: var(--text-2);
+}
+
+.breadcrumb a:hover {
+  color: var(--text);
+}
+
+.breadcrumb li + li::before {
+  content: "/";
+  margin-right: 8px;
+  color: var(--rule-2);
+}
+
+.tool-hero h1 {
+  font-size: clamp(2rem, 4.6vw, 3rem);
+  font-weight: 800;
+  letter-spacing: -0.035em;
+  margin-bottom: 12px;
+}
+
+.tool-hero p {
+  max-width: 60ch;
+  color: var(--text-2);
+  font-size: 1.0625rem;
+}
+
+/* ==================================================================== */
+/* Workspace frame                                                       */
+/* ==================================================================== */
+
+.workspace {
+  border: 1px solid var(--rule-2);
+  border-radius: var(--r-frame);
+  background: var(--deep);
+}
+
+.stage {
+  padding: 16px;
+  border-bottom: 1px solid var(--rule);
+  border-radius: var(--r-frame) var(--r-frame) 0 0;
+  background: var(--night);
+}
+
+.stage-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.pane-title {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  letter-spacing: -0.005em;
+  color: var(--text);
+}
+
+.stage .mc-screen {
+  min-height: 104px;
+  max-height: 40vh;
+  overflow-y: auto;
+  font-size: clamp(1.1rem, 2.2vw, 1.45rem);
+}
+
+.ws-body {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.ws-pane {
+  min-width: 0;
+  padding: clamp(18px, 3vw, 28px);
+}
+
+.ws-output {
+  border-top: 1px solid var(--rule);
+}
+
+@media (min-width: 920px) {
+  .ws-body {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  }
+  .ws-output {
+    border-top: 0;
+    border-left: 1px solid var(--rule);
+  }
+}
+
+.pane-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 36px;
+  margin-bottom: 18px;
+}
+
+/* ==================================================================== */
+/* Fields                                                                */
+/* ==================================================================== */
+
+.field {
+  display: grid;
+  gap: 8px;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.field + .field {
+  margin-top: 24px;
+}
+
+/* A tab panel groups fields, so spacing has to reach across it. */
+.field + .tabpanel,
+.tabpanel + .field {
+  margin-top: 24px;
+}
+
+.field-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 16px;
+}
+
+@media (min-width: 480px) {
+  .field-row {
+    grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+  }
+}
+
+.field-row > .field + .field {
+  margin-top: 0;
+}
+
+.label,
+.field legend {
+  padding: 0;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.field legend {
+  margin-bottom: 8px;
+}
+
+.label-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px 12px;
+}
+
+.hint {
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  color: var(--text-3);
+}
+
+.input-mono {
+  font-family: var(--font-mono);
+  font-size: 15px;
+}
+
+.select {
+  appearance: none;
+  -webkit-appearance: none;
+  padding-right: 38px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23a3b0c7' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 16px;
+  cursor: pointer;
+}
+
+.select option {
+  background-color: var(--deep);
+  color: var(--text);
+}
+
+/* ==================================================================== */
+/* Editor box: formatting toolbar + textarea as one control              */
+/* ==================================================================== */
+
+.editor-box {
+  border: 1px solid var(--control);
+  border-radius: var(--r-control);
+  background: var(--night);
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.editor-box:hover {
+  border-color: var(--control-hi);
+}
+
+.editor-box:focus-within {
+  border-color: var(--lapis);
+  box-shadow: 0 0 0 3px var(--lapis-soft);
+}
+
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 2px;
+  padding: 4px;
+  border-bottom: 1px solid var(--rule);
+}
+
+.tool-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-width: 40px;
+  min-height: 38px;
+  padding: 6px 10px;
+  border: 1px solid transparent;
+  border-radius: var(--r-chip);
+  background: transparent;
+  color: var(--text-2);
+  font: inherit;
+  font-size: 0.9375rem;
+  cursor: pointer;
+  transition: background-color 0.15s, color 0.15s, border-color 0.15s;
+}
+
+.tool-btn:hover {
+  background: var(--deep-2);
+  color: var(--text);
+}
+
+.tool-btn[aria-pressed="true"] {
+  background: var(--lapis-soft);
+  border-color: rgba(76, 125, 255, 0.5);
+  color: var(--text);
+}
+
+.tool-btn:focus-visible {
+  outline-offset: 0;
+}
+
+.tool-btn b { font-weight: 800; }
+.tool-btn u { text-underline-offset: 2px; }
+
+.tool-btn .obf {
+  font-family: var(--font-pixel);
+  letter-spacing: 0.04em;
+}
+
+.band--after-tool {
+  margin-top: clamp(56px, 8vw, 96px);
+}
+
+@media (max-width: 420px) {
+  .tool-btn-label {
+    display: none;
+  }
+}
+
+.toolbar-sep {
+  width: 1px;
+  height: 20px;
+  margin: 0 4px;
+  background: var(--rule-2);
+}
+
+.editor-box .textarea {
+  display: block;
+  min-height: 112px;
+  border: 0;
+  border-radius: 0 0 var(--r-control) var(--r-control);
+  background: transparent;
+  resize: vertical;
+  line-height: 1.55;
+}
+
+.editor-box .textarea:focus {
+  box-shadow: none;
+}
+
+/* ==================================================================== */
+/* Segmented control                                                     */
+/* ==================================================================== */
+
+.segmented {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 2px;
+  padding: 3px;
+  border: 1px solid var(--control);
+  border-radius: 10px;
+  background: var(--night);
+}
+
+.segmented label {
+  position: relative;
+}
+
+.segmented input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.segmented span {
+  display: inline-flex;
+  align-items: center;
+  min-height: 36px;
+  padding: 6px 14px;
+  border-radius: 7px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-2);
+  cursor: pointer;
+  user-select: none;
+  transition: background-color 0.15s, color 0.15s;
+}
+
+.segmented span:hover {
+  color: var(--text);
+}
+
+.segmented input:checked + span {
+  background: var(--deep-2);
+  color: var(--text);
+  box-shadow: 0 0 0 1px var(--rule-2) inset;
+}
+
+.segmented input:focus-visible + span {
+  outline: 2px solid var(--lapis);
+  outline-offset: 1px;
+}
+
+.segmented--sm span {
+  min-height: 32px;
+  padding: 4px 11px;
+  font-size: 0.8125rem;
+}
+
+/* ==================================================================== */
+/* Gradient editor                                                       */
+/* ==================================================================== */
+
+.grad {
+  position: relative;
+  height: 40px;
+  margin: 2px 13px 4px;
+}
+
+.grad-fill {
+  position: absolute;
+  inset: 8px -13px;
+  border-radius: var(--r-chip);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.grad-stop {
+  position: absolute;
+  top: 50%;
+  width: 26px;
+  height: 26px;
+  padding: 0;
+  border: 2px solid var(--night);
+  border-radius: 7px;
+  background: var(--stop);
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.35);
+  cursor: pointer;
+  transform: translate(-50%, -50%);
+  transition: box-shadow 0.15s, transform 0.15s var(--ease);
+}
+
+.grad-stop:hover {
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.7);
+}
+
+.grad-stop[aria-pressed="true"] {
+  box-shadow: 0 0 0 2px var(--text);
+  transform: translate(-50%, -50%) scale(1.12);
+}
+
+.grad-stop:focus-visible {
+  outline: 2px solid var(--lapis);
+  outline-offset: 3px;
+}
+
+.stop-editor {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.stop-color {
+  flex: none;
+  width: 46px;
+  height: 46px;
+  padding: 3px;
+  border: 1px solid var(--control);
+  border-radius: var(--r-control);
+  background: var(--night);
+  cursor: pointer;
+}
+
+.stop-color::-webkit-color-swatch-wrapper {
+  padding: 0;
+}
+
+.stop-color::-webkit-color-swatch {
+  border: 0;
+  border-radius: 5px;
+}
+
+.stop-color::-moz-color-swatch {
+  border: 0;
+  border-radius: 5px;
+}
+
+.stop-hex {
+  flex: 1 1 110px;
+  max-width: 150px;
+}
+
+.stop-hex[aria-invalid="true"] {
+  border-color: var(--danger);
+}
+
+.stop-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-left: auto;
+}
+
+.stop-error {
+  color: var(--danger);
+}
+
+/* Presets */
+.presets {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.preset {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 36px;
+  padding: 5px 12px 5px 6px;
+  border: 1px solid var(--rule-2);
+  border-radius: var(--r-chip);
+  background: var(--night);
+  color: var(--text-2);
+  font: inherit;
+  font-size: 0.8125rem;
+  cursor: pointer;
+  transition: border-color 0.15s, color 0.15s;
+}
+
+.preset:hover {
+  border-color: #3a4d74;
+  color: var(--text);
+}
+
+.preset i {
+  width: 26px;
+  height: 22px;
+  border-radius: 4px;
+}
+
+/* ==================================================================== */
+/* Switch                                                                */
+/* ==================================================================== */
+
+.switch {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  cursor: pointer;
+}
+
+.switch input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.switch-track {
+  position: relative;
+  flex: none;
+  width: 38px;
+  height: 22px;
+  margin-top: 1px;
+  border-radius: 999px;
+  border: 1px solid var(--control);
+  background: var(--deep-2);
+  transition: background-color 0.15s, border-color 0.15s;
+}
+
+.switch-track::after {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--text-2);
+  transition: transform 0.2s var(--ease), background-color 0.15s;
+}
+
+.switch input:checked + .switch-track {
+  background: var(--lapis);
+  border-color: var(--lapis);
+}
+
+.switch input:checked + .switch-track::after {
+  transform: translateX(16px);
+  background: #fff;
+}
+
+.switch input:focus-visible + .switch-track {
+  outline: 2px solid var(--lapis);
+  outline-offset: 2px;
+}
+
+.switch-text {
+  display: grid;
+  gap: 2px;
+}
+
+/* ==================================================================== */
+/* Output format tiles                                                   */
+/* ==================================================================== */
+
+.format-tiles {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 6px;
+}
+
+.tile {
+  position: relative;
+  min-width: 0;
+}
+
+.tile input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.tile span {
+  display: grid;
+  gap: 2px;
+  height: 100%;
+  padding: 9px 12px;
+  border: 1px solid var(--control);
+  border-radius: var(--r-control);
+  background: var(--night);
+  cursor: pointer;
+  transition: border-color 0.15s, background-color 0.15s;
+}
+
+.tile span:hover {
+  border-color: var(--control-hi);
+}
+
+.tile strong {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.tile code {
+  padding: 0;
+  background: none;
+  font-size: 0.75rem;
+  color: var(--text-3);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.tile input:checked + span {
+  border-color: var(--lapis);
+  background: var(--lapis-soft);
+}
+
+.tile input:checked + span code {
+  color: var(--text-2);
+}
+
+.tile input:focus-visible + span {
+  outline: 2px solid var(--lapis);
+  outline-offset: 2px;
+}
+
+.format-hint {
+  min-height: 2.5em;
+}
+
+/* ==================================================================== */
+/* Code output                                                           */
+/* ==================================================================== */
+
+.code-box {
+  border: 1px solid var(--control);
+  border-radius: var(--r-control);
+  background: var(--night);
+  overflow: hidden;
+}
+
+.code-box-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 6px 6px 6px 8px;
+  border-bottom: 1px solid var(--rule);
+}
+
+.code-box pre {
+  margin: 0;
+  padding: 14px 16px;
+  min-height: 112px;
+  max-height: 360px;
+  overflow: auto;
+  font-size: 0.8125rem;
+  line-height: 1.7;
+  color: #d4dcee;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+.code-box pre.is-empty {
+  color: var(--text-3);
+  font-family: var(--font-ui);
+  font-size: 0.9375rem;
+}
+
+.output-foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px 16px;
+  margin-top: 12px;
+}
+
+.stats {
+  font-size: 0.8125rem;
+  color: var(--text-3);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ==================================================================== */
+/* Mobile: pinned preview + bottom copy bar                              */
+/* ==================================================================== */
+
+.copybar {
+  display: none;
+}
+
+@media (max-width: 919px) {
+  /* Keep focused fields clear of the pinned preview and the copy bar. */
+  html:has(.tool-page) {
+    scroll-padding-top: 34vh;
+    scroll-padding-bottom: 88px;
+  }
+
+  /* The header scrolls away so the preview can stay pinned while typing. */
+  .tool-page .site-header {
+    position: relative;
+  }
+
+  .stage {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    padding: 12px;
+  }
+
+  .stage .mc-screen {
+    max-height: 24vh;
+    min-height: 64px;
+  }
+
+  /* MOTD: only the row that matters, as large as the screen allows */
+  .stage .stage-note,
+  .stage .sl-entry.is-dim {
+    display: none;
+  }
+
+  .stage .serverlist {
+    --gui: min(2px, calc((100vw - 58px) / 309));
+    padding: calc(var(--gui) * 6) 0;
+  }
+
+  .copybar {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 40;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 10px max(16px, env(safe-area-inset-right)) max(10px, env(safe-area-inset-bottom)) max(16px, env(safe-area-inset-left));
+    border-top: 1px solid var(--rule-2);
+    background: var(--deep);
+    transition: transform 0.2s var(--ease), visibility 0.2s;
+  }
+
+  .copybar.is-hidden {
+    transform: translateY(110%);
+    visibility: hidden;
+  }
+
+  .copybar-info {
+    min-width: 0;
+    font-size: 0.8125rem;
+    color: var(--text-3);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .copybar-info strong {
+    display: block;
+    color: var(--text);
+    font-size: 0.875rem;
+    font-weight: 600;
+  }
+
+  .tool-page main {
+    padding-bottom: 80px;
+  }
+}
+
+/* ==================================================================== */
+/* Guide                                                                 */
+/* ==================================================================== */
+
+.guide {
+  display: grid;
+  gap: clamp(48px, 7vw, 72px);
+}
+
+.guide > * {
+  min-width: 0;
+}
+
+.guide h2 {
+  font-size: var(--step-2);
+  margin-bottom: 20px;
+}
+
+/* A real sequence, so it is numbered */
+.steps {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 24px 40px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: step;
+}
+
+@media (min-width: 800px) {
+  .steps { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
+.steps li {
+  padding-top: 16px;
+  border-top: 1px solid var(--rule-2);
+  color: var(--text-2);
+  font-size: 0.9375rem;
+  counter-increment: step;
+}
+
+.steps li::before {
+  content: counter(step);
+  display: block;
+  margin-bottom: 10px;
+  font-size: var(--step-2);
+  font-weight: 800;
+  line-height: 1;
+  color: var(--cyan);
+}
+
+.steps strong {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--text);
+  font-size: 1rem;
+}
+
+.table-wrap {
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  border: 1px solid var(--rule);
+  border-radius: var(--r-control);
+}
+
+.table {
+  width: 100%;
+  min-width: 640px;
+  border-collapse: collapse;
+  font-size: 0.9375rem;
+}
+
+.table th,
+.table td {
+  padding: 13px 16px;
+  border-bottom: 1px solid var(--rule);
+  text-align: left;
+  vertical-align: top;
+}
+
+.table th {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--text-3);
+  background: var(--deep);
+}
+
+.table td {
+  color: var(--text-2);
+}
+
+.table td:first-child {
+  color: var(--text);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.table code {
+  white-space: nowrap;
+}
+
+.table tr:last-child td {
+  border-bottom: 0;
+}
+
+.faq {
+  border-top: 1px solid var(--rule);
+}
+
+.faq details {
+  border-bottom: 1px solid var(--rule);
+}
+
+.faq summary {
+  position: relative;
+  padding: 18px 44px 18px 0;
+  font-weight: 600;
+  cursor: pointer;
+  list-style: none;
+  transition: color 0.15s;
+}
+
+.faq summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq summary::after {
+  content: "";
+  position: absolute;
+  right: 6px;
+  top: 50%;
+  width: 9px;
+  height: 9px;
+  border-right: 2px solid var(--text-3);
+  border-bottom: 2px solid var(--text-3);
+  transform: translateY(-70%) rotate(45deg);
+  transition: transform 0.2s var(--ease);
+}
+
+.faq details[open] summary::after {
+  transform: translateY(-30%) rotate(225deg);
+}
+
+.faq summary:hover {
+  color: var(--cyan-hi);
+}
+
+.faq details p {
+  max-width: 70ch;
+  padding: 0 0 20px;
+  color: var(--text-2);
+}
+
+/* ==================================================================== */
+/* Tabs (same look as the segmented control, tab semantics)              */
+/* ==================================================================== */
+
+.tabs {
+  display: inline-flex;
+  gap: 2px;
+  padding: 3px;
+  border: 1px solid var(--control);
+  border-radius: 10px;
+  background: var(--night);
+}
+
+.tabs [role="tab"] {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 8px;
+  min-height: 32px;
+  padding: 5px 12px;
+  border: 0;
+  border-radius: 7px;
+  background: transparent;
+  color: var(--text-2);
+  font: inherit;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.15s, color 0.15s;
+}
+
+.tabs [role="tab"]:hover {
+  color: var(--text);
+}
+
+.tabs [role="tab"][aria-selected="true"] {
+  background: var(--deep-2);
+  color: var(--text);
+  box-shadow: 0 0 0 1px var(--rule-2) inset;
+}
+
+.tabs [role="tab"]:focus-visible {
+  outline-offset: 1px;
+}
+
+.tab-meta {
+  font-size: 0.75rem;
+  color: var(--text-3);
+  font-variant-numeric: tabular-nums;
+}
+
+.tab-meta.is-over {
+  color: var(--danger);
+}
+
+/* Single-line input inside the editor box */
+.editor-box .input {
+  border: 0;
+  border-radius: 0 0 var(--r-control) var(--r-control);
+  background: transparent;
+}
+
+.editor-box .input:focus {
+  box-shadow: none;
+}
+
+/* ==================================================================== */
+/* Width meter                                                           */
+/* ==================================================================== */
+
+.meter {
+  display: grid;
+  gap: 6px;
+}
+
+.meter-track {
+  position: relative;
+  height: 4px;
+  border-radius: 2px;
+  background: var(--deep-2);
+  overflow: hidden;
+}
+
+.meter-fill {
+  position: absolute;
+  inset: 0;
+  border-radius: 2px;
+  background: var(--text-2);
+  transform: scaleX(var(--fill, 0));
+  transform-origin: left center;
+  transition: transform 0.2s var(--ease);
+}
+
+.meter.is-over .meter-fill {
+  background: var(--danger);
+}
+
+.meter-text {
+  font-size: 0.8125rem;
+  color: var(--text-3);
+  font-variant-numeric: tabular-nums;
+}
+
+.meter.is-over .meter-text {
+  color: var(--danger);
+}
+
+/* ==================================================================== */
+/* File picker                                                           */
+/* ==================================================================== */
+
+.file-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.players-row .input {
+  flex: 1 1 60px;
+}
+
+.file-input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+}
+
+.file-input:focus-visible + .btn {
+  outline: 2px solid var(--lapis);
+  outline-offset: 2px;
+}
+
+.file-status {
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  color: var(--text-2);
+}
+
+.file-status.is-error {
+  color: var(--danger);
+}
+
+.code-box-file {
+  padding-left: 6px;
+  font-size: 0.8125rem;
+  color: var(--text-2);
+}

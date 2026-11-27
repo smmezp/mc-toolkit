@@ -1,0 +1,28 @@
+name: Bug report
+description: Something doesn't work or the output is wrong.
+labels: [bug]
+body:
+  - type: input
+    id: tool
+    attributes:
+      label: Tool
+      placeholder: Message Generator
+    validations:
+      required: true
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened?
+      description: What did you expect, and what did you get? A share link helps a lot.
+    validations:
+      required: true
+  - type: input
+    id: plugin
+    attributes:
+      label: Plugin and server version (if relevant)
+      placeholder: EssentialsX 2.21, Paper 1.21.4
+  - type: input
+    id: browser
+    attributes:
+      label: Browser and device
+      placeholder: Chrome on Android

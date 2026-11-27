@@ -6,7 +6,7 @@
   <title>Minecraft Gradient &amp; Hex Message Generator (YAML) — MC Toolkit</title>
   <meta name="description" content="Create Minecraft gradient and hex color messages for Paper and Spigot. Export ready-to-paste YAML in &amp;#RRGGBB, MiniMessage, &amp;x Spigot, legacy &amp; codes and CMI formats.">
   <link rel="canonical" href="https://smmezp.github.io/mc-toolkit/tools/message-generator/">
-  <meta name="theme-color" content="#05080f">
+  <meta name="theme-color" content="#050912">
 
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="MC Toolkit">
@@ -23,7 +23,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Pixelify+Sans:wght@400;700&family=Sora:wght@500;600;700&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Pixelify+Sans:wght@400;700&family=Schibsted+Grotesk:wght@400;500;600;700;800&display=swap">
   <link rel="stylesheet" href="../../css/main.css">
   <link rel="stylesheet" href="../../css/tool.css">
 
@@ -41,30 +41,45 @@
   }
   </script>
 </head>
-<body>
+<body class="tool-page">
   <a class="skip-link" href="#main">Skip to content</a>
 
   <header class="site-header">
     <div class="container header-inner">
       <a class="brand" href="../../" aria-label="MC Toolkit home">
         <svg viewBox="0 0 32 32" fill="none" aria-hidden="true">
-          <path d="M16 3 27 9.5v13L16 29 5 22.5v-13Z" stroke="#8ccfff" stroke-width="1.6" stroke-linejoin="round"/>
-          <path d="M5 9.5 16 16l11-6.5M16 16v13" stroke="#8ccfff" stroke-opacity=".5" stroke-width="1.6" stroke-linejoin="round"/>
-          <circle cx="16" cy="16" r="2.4" fill="#a78bfa"/>
+          <path d="M16 3 27 9.5v13L16 29 5 22.5v-13Z" stroke="#7dd8f0" stroke-width="1.8" stroke-linejoin="round"/>
+          <path d="M5 9.5 16 16l11-6.5M16 16v13" stroke="#7dd8f0" stroke-opacity=".45" stroke-width="1.8" stroke-linejoin="round"/>
+          <rect x="14" y="14" width="4" height="4" fill="#4c7dff"/>
         </svg>
-        <span>MC Toolkit</span>
+        <span translate="no">MC Toolkit</span>
       </a>
       <nav class="site-nav" aria-label="Main">
-        <a class="nav-link" href="../../#tools">Tools</a>
-        <a class="nav-link nav-optional" href="#guide">Guide</a>
-        <a class="nav-link" href="https://github.com/smmezp/mc-toolkit" target="_blank" rel="noopener" aria-label="MC Toolkit on GitHub">
+        <div class="menu" data-menu>
+          <button class="nav-item" type="button" aria-expanded="false" aria-controls="tools-menu">
+            Tools
+            <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+          </button>
+          <div class="menu-panel" id="tools-menu" hidden>
+            <ul class="menu-list">
+              <li><a class="menu-link" href="./" aria-current="page" style="--dot: var(--id-aqua)"><span class="menu-dot"></span>Message Generator<span class="menu-status is-live">Live</span></a></li>
+              <li><span class="menu-link is-planned" style="--dot: var(--id-blue)"><span class="menu-dot"></span>MOTD Generator<span class="menu-status">Next</span></span></li>
+              <li><span class="menu-link is-planned" style="--dot: var(--id-gold)"><span class="menu-dot"></span>Rank Price Calculator<span class="menu-status">Planned</span></span></li>
+              <li><span class="menu-link is-planned" style="--dot: var(--id-pink)"><span class="menu-dot"></span>Crate Reward Generator<span class="menu-status">Planned</span></span></li>
+              <li><span class="menu-link is-planned" style="--dot: var(--id-green)"><span class="menu-dot"></span>Economy Calculator<span class="menu-status">Planned</span></span></li>
+              <li><span class="menu-link is-planned" style="--dot: var(--id-gray)"><span class="menu-dot"></span>Plugin Config Helper<span class="menu-status">Planned</span></span></li>
+              <li><span class="menu-link is-planned" style="--dot: var(--id-purple)"><span class="menu-dot"></span>Enchantment Planner<span class="menu-status">Planned</span></span></li>
+            </ul>
+            <p class="menu-foot">Need something else? <a href="https://github.com/smmezp/mc-toolkit/issues/new/choose" target="_blank" rel="noopener">Request a tool</a></p>
+          </div>
+        </div>
+        <a class="nav-item nav-github" href="https://github.com/smmezp/mc-toolkit" target="_blank" rel="noopener" aria-label="MC Toolkit on GitHub">
           <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>
-          <span class="nav-label-optional">GitHub</span>
+          <span class="nav-label">GitHub</span>
         </a>
       </nav>
     </div>
   </header>
-
   <main id="main">
     <section class="tool-hero">
       <div class="container">
@@ -74,174 +89,185 @@
           <li aria-current="page">Message Generator</li>
         </ol>
         <h1>Message Generator</h1>
-        <p>Create gradient and hex-colored messages for your server, preview them in game style, and copy YAML that pastes straight into your plugin config.</p>
+        <p>Style a chat message with gradients and formatting, check it in a Minecraft preview, and copy YAML that pastes straight into your plugin config.</p>
       </div>
     </section>
 
-    <div class="container tool-layout">
-      <!-- Preview ----------------------------------------------------- -->
-      <section class="panel span-all" aria-labelledby="preview-title">
-        <div class="panel-head">
-          <h2 class="panel-title" id="preview-title">Preview</h2>
-          <div class="segmented segmented--sm" role="radiogroup" aria-label="Preview background">
-            <label><input type="radio" name="bg" value="chat" checked><span>Chat</span></label>
-            <label><input type="radio" name="bg" value="tooltip"><span>Item lore</span></label>
-            <label><input type="radio" name="bg" value="plain"><span>Plain</span></label>
+    <div class="container">
+      <div class="workspace">
+        <!-- Preview ------------------------------------------------------ -->
+        <section class="stage" aria-labelledby="preview-title">
+          <div class="stage-bar">
+            <h2 class="pane-title" id="preview-title">Preview</h2>
+            <div class="segmented segmented--sm" role="radiogroup" aria-label="Preview background">
+              <label><input type="radio" name="bg" value="chat" checked><span>Chat</span></label>
+              <label><input type="radio" name="bg" value="tooltip"><span>Item lore</span></label>
+              <label><input type="radio" name="bg" value="plain"><span>Plain</span></label>
+            </div>
           </div>
-        </div>
-        <div class="mc-screen mc-screen--chat preview-screen" id="mg-preview" aria-live="polite"></div>
-      </section>
+          <div class="mc-screen mc-screen--chat" id="mg-preview" role="img" aria-label="In-game preview of your message"></div>
+        </section>
 
-      <!-- Editor ------------------------------------------------------ -->
-      <section class="panel" aria-labelledby="editor-title">
-        <div class="panel-head">
-          <h2 class="panel-title" id="editor-title">Message</h2>
-          <button class="btn btn-ghost btn-sm" type="button" id="mg-reset">Reset</button>
-        </div>
+        <div class="ws-body">
+          <!-- Editor ----------------------------------------------------- -->
+          <section class="ws-pane ws-editor" aria-labelledby="editor-title">
+            <div class="pane-head">
+              <h2 class="pane-title" id="editor-title">Message</h2>
+              <button class="btn btn-quiet btn-sm" type="button" id="mg-reset"><span data-label>Reset to example</span></button>
+            </div>
 
-        <div class="field">
-          <label class="label" for="mg-text">Text</label>
-          <textarea class="textarea" id="mg-text" rows="3" spellcheck="false" autocomplete="off"></textarea>
-          <p class="hint">Each line becomes its own message. Lines are colored independently.</p>
-        </div>
+            <div class="field">
+              <label class="label" for="mg-text">Text</label>
+              <div class="editor-box">
+                <div class="toolbar" role="toolbar" aria-label="Formatting" aria-controls="mg-text">
+                  <button class="tool-btn" type="button" data-format="bold" aria-pressed="false" title="Bold (&amp;l), Ctrl+B"><b aria-hidden="true">B</b><span class="sr-only">Bold</span></button>
+                  <button class="tool-btn" type="button" data-format="italic" aria-pressed="false" title="Italic (&amp;o), Ctrl+I"><i aria-hidden="true">I</i><span class="sr-only">Italic</span></button>
+                  <button class="tool-btn" type="button" data-format="underline" aria-pressed="false" title="Underline (&amp;n), Ctrl+U"><u aria-hidden="true">U</u><span class="sr-only">Underline</span></button>
+                  <button class="tool-btn" type="button" data-format="strikethrough" aria-pressed="false" title="Strikethrough (&amp;m)"><s aria-hidden="true">S</s><span class="sr-only">Strikethrough</span></button>
+                  <span class="toolbar-sep" aria-hidden="true"></span>
+                  <button class="tool-btn" type="button" data-format="obfuscated" aria-pressed="false" title="Obfuscated (&amp;k)"><span class="obf" aria-hidden="true">#?!</span><span class="tool-btn-label" aria-hidden="true">Obfuscated</span><span class="sr-only">Obfuscated</span></button>
+                </div>
+                <textarea class="textarea" id="mg-text" name="text" rows="3" spellcheck="false" autocomplete="off" autocapitalize="off" placeholder="Example: Welcome, %player_name%…" aria-describedby="mg-text-hint"></textarea>
+              </div>
+              <p class="hint" id="mg-text-hint">Each line becomes its own message. Shortcuts: Ctrl+B, Ctrl+I, Ctrl+U.</p>
+            </div>
 
-        <div class="field">
-          <span class="label" id="mode-label">Color</span>
-          <div class="segmented" role="radiogroup" aria-labelledby="mode-label">
-            <label><input type="radio" name="mode" value="solid"><span>Solid</span></label>
-            <label><input type="radio" name="mode" value="gradient" checked><span>Gradient</span></label>
-            <label><input type="radio" name="mode" value="rainbow"><span>Rainbow</span></label>
-          </div>
-        </div>
+            <div class="field">
+              <div class="label-row">
+                <span class="label" id="mode-label">Color</span>
+                <div class="segmented segmented--sm" role="radiogroup" aria-labelledby="mode-label">
+                  <label><input type="radio" name="mode" value="solid"><span>Solid</span></label>
+                  <label><input type="radio" name="mode" value="gradient" checked><span>Gradient</span></label>
+                  <label><input type="radio" name="mode" value="rainbow"><span>Rainbow</span></label>
+                </div>
+              </div>
 
-        <div class="field" id="mg-colors-field">
-          <span class="label">Colors</span>
-          <div class="gradient-bar" id="mg-gradient-bar" aria-hidden="true"></div>
-          <div class="stops" id="mg-stops"></div>
-          <div class="stops-actions">
-            <button class="btn btn-secondary btn-sm" type="button" id="mg-add-stop">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
-              Add color
-            </button>
-            <button class="btn btn-ghost btn-sm" type="button" id="mg-reverse">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 4 3 8l4 4M3 8h14M17 20l4-4-4-4M21 16H7"/></svg>
-              Reverse
-            </button>
-          </div>
-        </div>
+              <div class="grad" id="mg-grad">
+                <div class="grad-fill" id="mg-gradient-bar" aria-hidden="true"></div>
+                <div id="mg-stops" role="group" aria-label="Gradient colors"></div>
+              </div>
 
-        <div class="field" id="mg-presets-field">
-          <span class="label">Presets</span>
-          <div class="presets" id="mg-presets"></div>
-        </div>
+              <div class="stop-editor" id="mg-stop-editor">
+                <input class="stop-color" id="mg-color" name="stop-color" type="color" aria-label="Pick the selected color">
+                <input class="input input-mono stop-hex" id="mg-hex" name="stop-hex" type="text" maxlength="7" spellcheck="false" autocomplete="off" autocapitalize="off" aria-label="Hex code of the selected color" aria-describedby="mg-hex-error">
+                <div class="stop-actions">
+                  <button class="btn btn-quiet btn-sm" type="button" id="mg-remove">Remove</button>
+                  <button class="btn btn-quiet btn-sm" type="button" id="mg-reverse">Reverse</button>
+                  <button class="btn btn-secondary btn-sm" type="button" id="mg-add-stop">Add color</button>
+                </div>
+              </div>
+              <p class="hint stop-error" id="mg-hex-error" hidden>Use a 3 or 6 digit hex code, like #7dd8f0.</p>
+            </div>
 
-        <div class="field">
-          <span class="label" id="formats-label">Formatting</span>
-          <div class="chips" role="group" aria-labelledby="formats-label">
-            <label class="chip"><input type="checkbox" name="format" value="bold"><span><b>Bold</b> <kbd>&amp;l</kbd></span></label>
-            <label class="chip"><input type="checkbox" name="format" value="italic"><span><i>Italic</i> <kbd>&amp;o</kbd></span></label>
-            <label class="chip"><input type="checkbox" name="format" value="underline"><span><u>Underline</u> <kbd>&amp;n</kbd></span></label>
-            <label class="chip"><input type="checkbox" name="format" value="strikethrough"><span><s>Strike</s> <kbd>&amp;m</kbd></span></label>
-            <label class="chip"><input type="checkbox" name="format" value="obfuscated"><span>Obfuscated <kbd>&amp;k</kbd></span></label>
-          </div>
-        </div>
+            <div class="field" id="mg-presets-field">
+              <span class="label" id="presets-label">Presets</span>
+              <div class="presets" id="mg-presets" role="group" aria-labelledby="presets-label"></div>
+            </div>
 
-        <div class="field">
-          <label class="switch">
-            <input type="checkbox" id="mg-protect" checked>
-            <span class="switch-track" aria-hidden="true"></span>
-            <span class="switch-text">
-              <span class="label">Keep placeholders intact</span>
-              <span class="hint">Tokens like <code>%player_name%</code>, <code>{player}</code> or <code>&lt;player&gt;</code> get one color, so color codes never break them.</span>
-            </span>
-          </label>
-        </div>
-      </section>
+            <div class="field">
+              <label class="switch">
+                <input type="checkbox" id="mg-protect" checked>
+                <span class="switch-track" aria-hidden="true"></span>
+                <span class="switch-text">
+                  <span class="label">Keep placeholders intact</span>
+                  <span class="hint">Tokens like <code translate="no">%player_name%</code>, <code translate="no">{player}</code> or <code translate="no">&lt;player&gt;</code> get one color, so color codes never break them.</span>
+                </span>
+              </label>
+            </div>
+          </section>
 
-      <!-- Output ------------------------------------------------------ -->
-      <section class="panel is-sticky" aria-labelledby="output-title">
-        <div class="panel-head">
-          <h2 class="panel-title" id="output-title">Output</h2>
-        </div>
+          <!-- Output ----------------------------------------------------- -->
+          <section class="ws-pane ws-output" aria-labelledby="output-title">
+            <div class="pane-head">
+              <h2 class="pane-title" id="output-title">Output</h2>
+            </div>
 
-        <div class="field">
-          <label class="label" for="mg-format">Format</label>
-          <select class="select" id="mg-format">
-            <option value="hex">Hex — &amp;#RRGGBB</option>
-            <option value="minimessage">MiniMessage — &lt;gradient&gt;</option>
-            <option value="spigot">Spigot hex — &amp;x&amp;R&amp;R…</option>
-            <option value="legacy">Legacy — &amp;a, &amp;b (16 colors)</option>
-            <option value="section">Section sign — §x§R…</option>
-            <option value="cmi">CMI — {#RRGGBB}</option>
-          </select>
-          <p class="hint format-hint" id="mg-format-hint"></p>
-        </div>
+            <fieldset class="field">
+              <legend>Format</legend>
+              <div class="format-tiles" translate="no">
+                <label class="tile"><input type="radio" name="outfmt" value="hex" checked><span><strong>Hex</strong><code>&amp;#RRGGBB</code></span></label>
+                <label class="tile"><input type="radio" name="outfmt" value="minimessage"><span><strong>MiniMessage</strong><code>&lt;gradient&gt;</code></span></label>
+                <label class="tile"><input type="radio" name="outfmt" value="spigot"><span><strong>Spigot hex</strong><code>&amp;x&amp;R&amp;R&amp;G…</code></span></label>
+                <label class="tile"><input type="radio" name="outfmt" value="legacy"><span><strong>Legacy</strong><code>&amp;a &amp;b &amp;c</code></span></label>
+                <label class="tile"><input type="radio" name="outfmt" value="section"><span><strong>Section sign</strong><code>§x§R§R…</code></span></label>
+                <label class="tile"><input type="radio" name="outfmt" value="cmi"><span><strong>CMI</strong><code>{#RRGGBB}</code></span></label>
+              </div>
+              <p class="hint format-hint" id="mg-format-hint" aria-live="polite"></p>
+            </fieldset>
 
-        <div class="field-row field">
-          <div class="field">
-            <label class="label" for="mg-key">YAML key</label>
-            <input class="input input-mono" id="mg-key" type="text" spellcheck="false" autocomplete="off" autocapitalize="off" placeholder="messages.welcome">
-          </div>
-          <div class="field">
-            <label class="label" for="mg-quote">Quotes</label>
-            <select class="select" id="mg-quote">
-              <option value="single">Single ' '</option>
-              <option value="double">Double " "</option>
-            </select>
-          </div>
-        </div>
-
-        <div class="field">
-          <div class="code-box">
-            <div class="code-box-head">
-              <div class="segmented segmented--sm" role="radiogroup" aria-label="Output view">
-                <label><input type="radio" name="view" value="yaml" checked><span>YAML</span></label>
-                <label><input type="radio" name="view" value="raw"><span>Raw text</span></label>
+            <div class="field-row field">
+              <div class="field">
+                <label class="label" for="mg-key">YAML key</label>
+                <input class="input input-mono" id="mg-key" name="yaml-key" type="text" spellcheck="false" autocomplete="off" autocapitalize="off" placeholder="messages.welcome…">
+              </div>
+              <div class="field">
+                <label class="label" for="mg-quote">Quotes</label>
+                <select class="select" id="mg-quote" name="quotes">
+                  <option value="single">Single ' '</option>
+                  <option value="double">Double " "</option>
+                </select>
               </div>
             </div>
-            <pre id="mg-output" tabindex="0" aria-label="Generated output"></pre>
-          </div>
-          <div class="output-actions">
-            <button class="btn btn-primary" type="button" id="mg-copy">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a1 1 0 0 1 1-1h10"/></svg>
-              Copy
-            </button>
-            <button class="btn btn-secondary" type="button" id="mg-share">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1"/><path d="M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/></svg>
-              Share link
-            </button>
-          </div>
-          <p class="stats" id="mg-stats"></p>
+
+            <div class="field">
+              <div class="code-box">
+                <div class="code-box-head">
+                  <div class="segmented segmented--sm" role="radiogroup" aria-label="Output view">
+                    <label><input type="radio" name="view" value="yaml" checked><span>YAML</span></label>
+                    <label><input type="radio" name="view" value="raw"><span>Raw text</span></label>
+                  </div>
+                  <button class="btn btn-primary btn-sm" type="button" id="mg-copy">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a1 1 0 0 1 1-1h10"/></svg>
+                    <span data-label>Copy YAML</span>
+                  </button>
+                </div>
+                <pre id="mg-output" tabindex="0" role="region" aria-label="Generated output" translate="no"></pre>
+              </div>
+              <div class="output-foot">
+                <p class="stats" id="mg-stats"></p>
+                <button class="btn btn-secondary btn-sm" type="button" id="mg-share">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1"/><path d="M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/></svg>
+                  <span data-label>Copy share link</span>
+                </button>
+              </div>
+            </div>
+          </section>
         </div>
-      </section>
+      </div>
     </div>
 
-    <!-- Guide --------------------------------------------------------- -->
-    <section class="section" id="guide">
+    <!-- Mobile: copy without scrolling to the output -->
+    <div class="copybar is-hidden" id="mg-copybar">
+      <p class="copybar-info"><strong id="mg-copybar-format">Hex</strong>Ready to paste</p>
+      <button class="btn btn-primary btn-sm" type="button" id="mg-copy-mobile"><span data-label>Copy YAML</span></button>
+    </div>
+
+    <!-- Guide ------------------------------------------------------------ -->
+    <section class="band band--after-tool" id="guide">
       <div class="container guide">
         <div>
           <h2>How to use it on your server</h2>
           <ol class="steps">
-            <li><strong>Write and style</strong>Type your message, choose colors and formatting. The preview shows how it renders in game.</li>
-            <li><strong>Pick your plugin's format</strong>Check your plugin's documentation for the color format it reads. When unsure, <code>&amp;#RRGGBB</code> is the most widely supported.</li>
-            <li><strong>Paste and reload</strong>Copy the YAML into the plugin's config file, keep the indentation, then reload the plugin or restart the server.</li>
+            <li><strong>Write and style</strong>Type your message, then pick colors and formatting. The preview shows how it renders in game.</li>
+            <li><strong>Pick your plugin’s format</strong>Check which color format your plugin reads. If you’re not sure, <code>&amp;#RRGGBB</code> is the most widely supported.</li>
+            <li><strong>Paste and reload</strong>Paste the YAML into the plugin’s config file, keep the indentation, then reload the plugin or restart the server.</li>
           </ol>
         </div>
 
         <div>
           <h2>Which format does my plugin need?</h2>
-          <div class="table-wrap">
+          <div class="table-wrap" tabindex="0" role="region" aria-label="Plugin formats table, scrolls sideways on small screens">
             <table class="table">
               <thead>
                 <tr><th scope="col">Format</th><th scope="col">Looks like</th><th scope="col">Use it for</th></tr>
               </thead>
-              <tbody>
-                <tr><td>Hex</td><td><code>&amp;#8ccfffHello</code></td><td>EssentialsX, TAB, DeluxeMenus and most modern plugins. Needs Minecraft 1.16+.</td></tr>
-                <tr><td>MiniMessage</td><td><code>&lt;gradient:#8ccfff:#a78bfa&gt;</code></td><td>Plugins built on Paper's Adventure API. Shortest output; the plugin computes the gradient itself.</td></tr>
-                <tr><td>Spigot hex</td><td><code>&amp;x&amp;8&amp;c&amp;c&amp;f&amp;f&amp;f</code></td><td>Plugins that translate <code>&amp;</code> codes with Bukkit's built-in method. Needs 1.16+.</td></tr>
-                <tr><td>Legacy</td><td><code>&amp;bHello</code></td><td>Every plugin and every version. Gradients are approximated with the 16 classic colors.</td></tr>
-                <tr><td>Section sign</td><td><code>§x§8§c…</code></td><td>Places that read raw formatting codes and don't translate <code>&amp;</code>.</td></tr>
-                <tr><td>CMI</td><td><code>{#8ccfff}Hello</code></td><td>CMI and plugins that use CMILib.</td></tr>
+              <tbody translate="no">
+                <tr><td>Hex</td><td><code>&amp;#8ccfffHello</code></td><td translate="yes">EssentialsX, TAB, DeluxeMenus and most modern plugins. Needs Minecraft 1.16+.</td></tr>
+                <tr><td>MiniMessage</td><td><code>&lt;gradient:#8ccfff:#a78bfa&gt;</code></td><td translate="yes">Plugins built on Paper’s Adventure API. Shortest output, because the plugin computes the gradient.</td></tr>
+                <tr><td>Spigot hex</td><td><code>&amp;x&amp;8&amp;c&amp;c&amp;f&amp;f&amp;f</code></td><td translate="yes">Plugins that translate <code>&amp;</code> codes with Bukkit’s built-in method. Needs 1.16+.</td></tr>
+                <tr><td>Legacy</td><td><code>&amp;bHello</code></td><td translate="yes">Every plugin and every version. Gradients use the closest of the 16 classic colors.</td></tr>
+                <tr><td>Section sign</td><td><code>§x§8§c…</code></td><td translate="yes">Places that read raw formatting codes and don’t translate <code>&amp;</code>.</td></tr>
+                <tr><td>CMI</td><td><code>{#8ccfff}Hello</code></td><td translate="yes">CMI and plugins that use CMILib.</td></tr>
               </tbody>
             </table>
           </div>
@@ -252,19 +278,19 @@
           <div class="faq">
             <details>
               <summary>My message shows the codes instead of colors.</summary>
-              <p>The plugin doesn't read that format. Try another one from the table above — Legacy works everywhere. Hex colors also need the server and the player's client on Minecraft 1.16 or newer.</p>
+              <p>Your plugin doesn’t read that format. Pick another one from the table above; Legacy works everywhere. Hex colors also need the server and the player’s game on Minecraft 1.16 or newer.</p>
             </details>
             <details>
               <summary>Why is <code>&amp;l</code> repeated after every color?</summary>
-              <p>In Minecraft, a color code resets formatting. To keep a gradient bold, the bold code has to follow every color code. The generator handles this for you.</p>
+              <p>In Minecraft, a color code resets formatting. To keep a gradient bold, the bold code has to follow every color code. The generator does this for you.</p>
             </details>
             <details>
               <summary>Should I use single or double quotes?</summary>
-              <p>Single quotes are the safest choice: YAML treats everything inside them literally. Double quotes interpret backslashes, which the generator escapes for you if you pick them.</p>
+              <p>Single quotes are the safest choice: YAML reads everything inside them literally. Double quotes treat backslashes as escapes, which the generator handles if you pick them.</p>
             </details>
             <details>
               <summary>Is my text sent anywhere?</summary>
-              <p>No. Everything runs in your browser. The only thing that stores your message is the share link, and only if you copy it.</p>
+              <p>No. Everything runs in your browser. Your message is only stored in the share link, and only if you copy it.</p>
             </details>
           </div>
         </div>
@@ -273,17 +299,38 @@
   </main>
 
   <footer class="site-footer">
-    <div class="container footer-inner">
-      <span>© <span data-year>2026</span> MC Toolkit · MIT License</span>
-      <ul class="footer-links">
-        <li><a href="../../">Home</a></li>
-        <li><a href="https://github.com/smmezp/mc-toolkit" target="_blank" rel="noopener">Source code</a></li>
-        <li><a href="https://github.com/smmezp/mc-toolkit/issues" target="_blank" rel="noopener">Report an issue</a></li>
-      </ul>
-      <p class="footer-legal">NOT AN OFFICIAL MINECRAFT PRODUCT. NOT APPROVED BY OR ASSOCIATED WITH MOJANG OR MICROSOFT. Minecraft is a trademark of Mojang AB.</p>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-about">
+          <a class="brand" href="../../">
+            <svg viewBox="0 0 32 32" fill="none" aria-hidden="true">
+              <path d="M16 3 27 9.5v13L16 29 5 22.5v-13Z" stroke="#7dd8f0" stroke-width="1.8" stroke-linejoin="round"/>
+              <path d="M5 9.5 16 16l11-6.5M16 16v13" stroke="#7dd8f0" stroke-opacity=".45" stroke-width="1.8" stroke-linejoin="round"/>
+              <rect x="14" y="14" width="4" height="4" fill="#4c7dff"/>
+            </svg>
+            <span translate="no">MC Toolkit</span>
+          </a>
+          <p>Free, open-source tools for people who run Minecraft servers.</p>
+        </div>
+        <div class="footer-col">
+          <h2>Tools</h2>
+          <ul>
+            <li><a href="./" >Message Generator</a></li>
+            <li><a href="../../#tools">Roadmap</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h2>Project</h2>
+          <ul>
+            <li><a href="https://github.com/smmezp/mc-toolkit" target="_blank" rel="noopener">Source code</a></li>
+            <li><a href="https://github.com/smmezp/mc-toolkit/issues" target="_blank" rel="noopener">Report an issue</a></li>
+            <li><a href="https://github.com/smmezp/mc-toolkit/blob/main/LICENSE" target="_blank" rel="noopener">MIT License</a></li>
+          </ul>
+        </div>
+      </div>
+      <p class="footer-legal">© <span data-year>2026</span> MC Toolkit contributors. Not an official Minecraft product. Not approved by or associated with Mojang or Microsoft. Minecraft is a trademark of Mojang AB.</p>
     </div>
   </footer>
-
   <script src="../../js/site.js" defer></script>
   <script src="../../js/lib/mc-text.js" defer></script>
   <script src="../../js/tools/message-generator.js" defer></script>

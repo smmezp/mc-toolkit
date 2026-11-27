@@ -25,9 +25,10 @@
 - Solid, multi-stop gradient (up to 8 colors) and rainbow modes
 - Bold, italic, underline, strikethrough and obfuscated — re-applied after every color code, as Minecraft requires
 - **Placeholder protection:** `%player_name%`, `{player}` and `<player>` are never split by color codes
-- Live in-game preview (chat, item lore, plain)
+- Live in-game preview (chat, item lore, plain), pinned on mobile while you edit
+- Formatting toolbar with keyboard shortcuts (Ctrl+B / I / U) and a gradient bar with color stops
 - YAML output with nested keys (`messages.welcome`), lists for multi-line text and correct quote escaping
-- Shareable links that restore the whole setup
+- The address bar always holds a shareable link that restores the whole setup
 
 ## Principles
 
@@ -55,6 +56,9 @@ mc-toolkit/
 │   └── tools/
 │       └── message-generator.js
 ├── assets/                     # Favicon, app icon, social image
+├── docs/
+│   └── DESIGN.md               # Design tokens, rules and tool page anatomy
+├── .claude/skills/             # Claude Code design & accessibility skills
 ├── .github/                    # Issue templates, funding config
 ├── robots.txt
 ├── sitemap.xml
@@ -91,7 +95,7 @@ If you fork the project or use a custom domain, update the absolute URLs in the 
 
 1. Create `tools/<tool-name>/index.html` — copy the Message Generator page as a template (header, footer, SEO tags).
 2. Put the tool logic in `js/tools/<tool-name>.js`. Shared, reusable logic goes in `js/lib/`.
-3. Reuse the components in `css/tool.css` (`.panel`, `.field`, `.segmented`, `.chip`, `.code-box`…) before adding new styles.
+3. Reuse the workspace components in `css/tool.css` (`.workspace`, `.field`, `.segmented`, `.tile`, `.code-box`…) and follow [docs/DESIGN.md](docs/DESIGN.md).
 4. Turn the card on the homepage into a link, and add the URL to `sitemap.xml`.
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for code style.

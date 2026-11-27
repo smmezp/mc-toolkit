@@ -6,12 +6,12 @@
   <title>MC Toolkit — Free Tools for Minecraft Server Owners</title>
   <meta name="description" content="Free, open-source tools for Paper and Spigot server owners: gradient message generator, MOTD builder, rank price calculator and more. Runs in your browser, no sign-up.">
   <link rel="canonical" href="https://smmezp.github.io/mc-toolkit/">
-  <meta name="theme-color" content="#05080f">
+  <meta name="theme-color" content="#050912">
 
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="MC Toolkit">
   <meta property="og:title" content="MC Toolkit — Free Tools for Minecraft Server Owners">
-  <meta property="og:description" content="Open-source tools for Paper and Spigot servers. Messages, MOTDs, ranks, crates and economy — all in your browser.">
+  <meta property="og:description" content="Open-source tools for Paper and Spigot servers. Messages, MOTDs, ranks, crates and economy, all in your browser.">
   <meta property="og:url" content="https://smmezp.github.io/mc-toolkit/">
   <meta property="og:image" content="https://smmezp.github.io/mc-toolkit/assets/og-image.png">
   <meta property="og:image:width" content="1200">
@@ -23,7 +23,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Pixelify+Sans:wght@400;700&family=Sora:wght@500;600;700&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Pixelify+Sans:wght@400;700&family=Schibsted+Grotesk:wght@400;500;600;700;800&display=swap">
   <link rel="stylesheet" href="css/main.css">
 
   <script type="application/ld+json">
@@ -43,201 +43,258 @@
     <div class="container header-inner">
       <a class="brand" href="./" aria-label="MC Toolkit home">
         <svg viewBox="0 0 32 32" fill="none" aria-hidden="true">
-          <path d="M16 3 27 9.5v13L16 29 5 22.5v-13Z" stroke="#8ccfff" stroke-width="1.6" stroke-linejoin="round"/>
-          <path d="M5 9.5 16 16l11-6.5M16 16v13" stroke="#8ccfff" stroke-opacity=".5" stroke-width="1.6" stroke-linejoin="round"/>
-          <circle cx="16" cy="16" r="2.4" fill="#a78bfa"/>
+          <path d="M16 3 27 9.5v13L16 29 5 22.5v-13Z" stroke="#7dd8f0" stroke-width="1.8" stroke-linejoin="round"/>
+          <path d="M5 9.5 16 16l11-6.5M16 16v13" stroke="#7dd8f0" stroke-opacity=".45" stroke-width="1.8" stroke-linejoin="round"/>
+          <rect x="14" y="14" width="4" height="4" fill="#4c7dff"/>
         </svg>
-        <span>MC Toolkit</span>
+        <span translate="no">MC Toolkit</span>
       </a>
       <nav class="site-nav" aria-label="Main">
-        <a class="nav-link" href="#tools">Tools</a>
-        <a class="nav-link nav-optional" href="#support">Support</a>
-        <a class="nav-link" href="https://github.com/smmezp/mc-toolkit" target="_blank" rel="noopener" aria-label="MC Toolkit on GitHub">
+        <div class="menu" data-menu>
+          <button class="nav-item" type="button" aria-expanded="false" aria-controls="tools-menu">
+            Tools
+            <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+          </button>
+          <div class="menu-panel" id="tools-menu" hidden>
+            <ul class="menu-list">
+              <li><a class="menu-link" href="tools/message-generator/" style="--dot: var(--id-aqua)"><span class="menu-dot"></span>Message Generator<span class="menu-status is-live">Live</span></a></li>
+              <li><span class="menu-link is-planned" style="--dot: var(--id-blue)"><span class="menu-dot"></span>MOTD Generator<span class="menu-status">Next</span></span></li>
+              <li><span class="menu-link is-planned" style="--dot: var(--id-gold)"><span class="menu-dot"></span>Rank Price Calculator<span class="menu-status">Planned</span></span></li>
+              <li><span class="menu-link is-planned" style="--dot: var(--id-pink)"><span class="menu-dot"></span>Crate Reward Generator<span class="menu-status">Planned</span></span></li>
+              <li><span class="menu-link is-planned" style="--dot: var(--id-green)"><span class="menu-dot"></span>Economy Calculator<span class="menu-status">Planned</span></span></li>
+              <li><span class="menu-link is-planned" style="--dot: var(--id-gray)"><span class="menu-dot"></span>Plugin Config Helper<span class="menu-status">Planned</span></span></li>
+              <li><span class="menu-link is-planned" style="--dot: var(--id-purple)"><span class="menu-dot"></span>Enchantment Planner<span class="menu-status">Planned</span></span></li>
+            </ul>
+            <p class="menu-foot">Need something else? <a href="https://github.com/smmezp/mc-toolkit/issues/new/choose" target="_blank" rel="noopener">Request a tool</a></p>
+          </div>
+        </div>
+        <a class="nav-item nav-github" href="https://github.com/smmezp/mc-toolkit" target="_blank" rel="noopener" aria-label="MC Toolkit on GitHub">
           <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>
-          <span class="nav-label-optional">GitHub</span>
+          <span class="nav-label">GitHub</span>
         </a>
       </nav>
     </div>
   </header>
 
   <main id="main">
-    <!-- Hero ---------------------------------------------------------- -->
-    <section class="hero">
+    <!-- Hero: the live demo is the one bold element on the page -->
+    <section class="hero" aria-labelledby="hero-title">
       <div class="container hero-grid">
-        <div class="reveal">
-          <span class="eyebrow">Open source · Paper &amp; Spigot</span>
-          <h1>Tools for people who <span class="accent">run Minecraft servers.</span></h1>
-          <p class="hero-lead">Generate messages, MOTDs, rank prices and plugin configs that you can paste straight into your server. Free, no account, and everything runs in your browser.</p>
+        <div class="enter">
+          <h1 id="hero-title">Free tools for Minecraft server owners</h1>
+          <p class="hero-lead">Build colored chat messages, MOTDs, rank prices and plugin configs in your browser, then paste the result straight into your Paper or Spigot server.</p>
           <div class="hero-actions">
-            <a class="btn btn-primary" href="tools/message-generator/">
-              Open Message Generator
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-            </a>
+            <a class="btn btn-primary" href="tools/message-generator/">Open Message Generator</a>
             <a class="btn btn-secondary" href="#tools">See all tools</a>
           </div>
-          <ul class="hero-meta">
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>No sign-up</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Nothing uploaded</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>MIT licensed</li>
-          </ul>
         </div>
 
-        <div class="window reveal reveal-2" aria-label="Example: a generated message and how it looks in game">
-          <div class="window-bar">
-            <div class="window-dots" aria-hidden="true"><span></span><span></span><span></span></div>
-            <span>messages.yml</span>
-          </div>
-<pre class="window-code"><code><span class="tok-com"># Generated with MC Toolkit</span>
-<span class="tok-key">join-message</span>: <span class="tok-str">'<span class="tok-tag">&lt;gradient:#8ccfff:#a78bfa&gt;&lt;bold&gt;</span>Welcome, %player%!<span class="tok-tag">&lt;/bold&gt;&lt;/gradient&gt;</span>'</span>
-<span class="tok-key">help-hint</span>: <span class="tok-str">'<span class="tok-tag">&lt;gray&gt;</span>Type <span class="tok-tag">&lt;white&gt;</span>/help<span class="tok-tag">&lt;/white&gt;</span> to get started.'</span></code></pre>
-          <div class="window-divider">In game</div>
-          <div class="window-preview">
-            <div class="mc-screen mc-screen--chat" id="hero-preview">
-              <div class="mc-line">Welcome, Alex!</div>
-              <div class="mc-line">Type /help to get started.</div>
+        <div class="demo enter enter-2">
+          <div class="demo-input">
+            <label for="demo-text">Try it: type a chat message</label>
+            <div class="demo-row">
+              <input class="input" id="demo-text" name="demo-message" type="text" value="Welcome to Skyreach, %player%!" maxlength="80" spellcheck="false" autocomplete="off" autocapitalize="off">
+              <div class="demo-swatches" role="group" aria-label="Gradient colors">
+                <button class="swatch" type="button" aria-pressed="true" data-colors="8ccfff,a78bfa" style="--swatch: linear-gradient(90deg, #8ccfff, #a78bfa)"><span class="sr-only">Celestial</span></button>
+                <button class="swatch" type="button" aria-pressed="false" data-colors="00c6ff,0072ff" style="--swatch: linear-gradient(90deg, #00c6ff, #0072ff)"><span class="sr-only">Ocean</span></button>
+                <button class="swatch" type="button" aria-pressed="false" data-colors="ff512f,f09819" style="--swatch: linear-gradient(90deg, #ff512f, #f09819)"><span class="sr-only">Ember</span></button>
+                <button class="swatch" type="button" aria-pressed="false" data-colors="43e97b,38f9d7" style="--swatch: linear-gradient(90deg, #43e97b, #38f9d7)"><span class="sr-only">Mint</span></button>
+              </div>
             </div>
           </div>
+          <div class="demo-stage">
+            <div class="mc-screen mc-screen--chat" id="demo-preview" role="img" aria-label="In-game preview: Welcome to Skyreach, Alex!">
+              <div class="mc-line">Welcome to Skyreach, Alex!</div>
+            </div>
+          </div>
+          <div class="demo-code">
+            <pre id="demo-code" tabindex="0" role="region" aria-label="Generated YAML"><code translate="no">join-message: '&lt;gradient:#8ccfff:#a78bfa&gt;Welcome to Skyreach, %player%!&lt;/gradient&gt;'</code></pre>
+            <button class="btn btn-quiet btn-sm" type="button" id="demo-copy">Copy</button>
+          </div>
+          <div class="demo-foot">
+            <span>Shown in <code>&amp;#RRGGBB</code> hex format.</span>
+            <a id="demo-open" href="tools/message-generator/">Edit in Message Generator</a>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- Tools --------------------------------------------------------- -->
-    <section class="section" id="tools">
+    <!-- Tools ------------------------------------------------------------ -->
+    <section class="band" id="tools" aria-labelledby="tools-title">
       <div class="container">
-        <div class="section-head">
-          <span class="eyebrow">The toolkit</span>
-          <h2>Seven tools, built one at a time.</h2>
-          <p>Each tool is released when it actually works. Planned tools are listed in build order.</p>
+        <div class="band-head">
+          <h2 id="tools-title">The toolkit</h2>
+          <p>Each tool does one job and gives you something you can paste into your server. One is ready today and six more are being built in order.</p>
         </div>
 
-        <ul class="tool-grid">
+        <article class="feature" aria-labelledby="feature-title">
+          <div class="feature-copy">
+            <span class="status">Ready to use</span>
+            <h3 id="feature-title">Message Generator</h3>
+            <p>Gradients, hex colors and formatting for chat messages, item lore and config files.</p>
+            <ul class="checks">
+              <li>Up to 8 gradient colors, plus solid and rainbow</li>
+              <li>Six output formats for the plugins you already run</li>
+              <li>Placeholders like <code>%player%</code> are never split</li>
+              <li>YAML with nested keys and correct quoting</li>
+            </ul>
+            <a class="btn btn-primary" href="tools/message-generator/">Open Message Generator</a>
+          </div>
+          <div class="feature-spec">
+            <p class="spec-caption">One message, every format it exports:</p>
+            <ul class="format-list" translate="no">
+              <li><span>Hex</span><code>&amp;#8ccfff&amp;lH&amp;#95b8fd&amp;li &amp;#9ea2fc&amp;l%player%&amp;#a78bfa&amp;l!</code></li>
+              <li><span>MiniMessage</span><code>&lt;gradient:#8ccfff:#a78bfa&gt;&lt;bold&gt;Hi %player%!&lt;/bold&gt;&lt;/gradient&gt;</code></li>
+              <li><span>Spigot hex</span><code>&amp;x&amp;8&amp;c&amp;c&amp;f&amp;f&amp;f&amp;lH&amp;x&amp;9&amp;5&amp;b&amp;8&amp;f&amp;d&amp;li …</code></li>
+              <li><span>Legacy</span><code>&amp;b&amp;lH&amp;7&amp;li %player%!</code></li>
+              <li><span>Section sign</span><code>§x§8§c§c§f§f§f§lH§x§9§5§b§8§f§d§li …</code></li>
+              <li><span>CMI</span><code>{#8ccfff}&amp;lH{#95b8fd}&amp;li {#9ea2fc}&amp;l%player%{#a78bfa}&amp;l!</code></li>
+            </ul>
+          </div>
+        </article>
+
+        <div class="roadmap-head">
+          <h3>Coming next</h3>
+          <p>Built in this order. <a href="https://github.com/smmezp/mc-toolkit/issues/new/choose" target="_blank" rel="noopener">Suggest a change</a></p>
+        </div>
+
+        <ol class="roadmap">
           <li>
-            <a class="tool-card" href="tools/message-generator/">
-              <div class="tool-card-top">
-                <span class="tool-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16v11H9l-5 4Z"/><path d="M8 9.5h8M8 12.5h5"/></svg></span>
-                <span class="badge badge-live">Live</span>
-              </div>
-              <h3>Message Generator</h3>
-              <p>Gradients, hex colors and formatting for chat and config messages. Exports YAML for Hex, MiniMessage, Spigot, legacy and CMI formats.</p>
-              <span class="tool-card-foot">Open tool <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-            </a>
-          </li>
-          <li>
-            <div class="tool-card is-planned">
-              <div class="tool-card-top">
-                <span class="tool-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4" width="17" height="7" rx="1.5"/><rect x="3.5" y="13" width="17" height="7" rx="1.5"/><path d="M7 7.5h.01M7 16.5h.01M11 7.5h6M11 16.5h6"/></svg></span>
-                <span class="badge">Next</span>
-              </div>
-              <h3>MOTD Generator</h3>
-              <p>Design the two-line server list message with a live server-list preview.</p>
+            <div class="spec spec-motd" aria-hidden="true">
+              <span class="icon"></span>
+              <div><div class="name">Skyreach Network</div><div class="l1">Survival | Skyblock | Events</div><div class="l2">New season starts Friday</div></div>
+              <span class="ping">128/500</span>
             </div>
+            <h4>MOTD Generator</h4>
+            <p>Design the two-line message players see in their server list, with a live preview.</p>
+            <div class="roadmap-meta is-next"><span>In progress</span></div>
           </li>
           <li>
-            <div class="tool-card is-planned">
-              <div class="tool-card-top">
-                <span class="tool-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 8 4.5 4L12 5l4.5 7L21 8l-2 11H5Z"/></svg></span>
-                <span class="badge">Planned</span>
-              </div>
-              <h3>Rank Price Calculator</h3>
-              <p>Price VIP ranks by perks and audience, and compare tiers side by side.</p>
+            <div class="spec spec-bars" style="--c: var(--id-gold)" aria-hidden="true">
+              <div><span>VIP</span><i style="--w: 30%"></i><b>$4.99</b></div>
+              <div><span>MVP</span><i style="--w: 58%"></i><b>$9.99</b></div>
+              <div><span>Legend</span><i style="--w: 100%"></i><b>$19.99</b></div>
             </div>
+            <h4>Rank Price Calculator</h4>
+            <p>Price VIP ranks by their perks and your audience, and compare tiers side by side.</p>
+            <div class="roadmap-meta"><span>Planned</span></div>
           </li>
           <li>
-            <div class="tool-card is-planned">
-              <div class="tool-card-top">
-                <span class="tool-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 7.5 12 3l8.5 4.5v9L12 21l-8.5-4.5Z"/><path d="M3.5 7.5 12 12l8.5-4.5M12 12v9"/></svg></span>
-                <span class="badge">Planned</span>
-              </div>
-              <h3>Crate Reward Generator</h3>
-              <p>Build weighted reward tables, check real drop odds and export configs.</p>
+            <div class="spec spec-bars" style="--c: var(--id-pink)" aria-hidden="true">
+              <div><span>Diamond</span><i style="--w: 6%"></i><b>5%</b></div>
+              <div><span>Gold</span><i style="--w: 25%"></i><b>20%</b></div>
+              <div><span>Iron</span><i style="--w: 92%"></i><b>75%</b></div>
             </div>
+            <h4>Crate Reward Generator</h4>
+            <p>Build weighted reward tables, see the real drop odds and export the config.</p>
+            <div class="roadmap-meta"><span>Planned</span></div>
           </li>
           <li>
-            <div class="tool-card is-planned">
-              <div class="tool-card-top">
-                <span class="tool-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4v16h16"/><path d="m7.5 15 4-4 3 3 5-6"/></svg></span>
-                <span class="badge">Planned</span>
-              </div>
-              <h3>Economy Calculator</h3>
-              <p>Model shop prices, money supply and inflation before your economy breaks.</p>
+            <div class="spec" aria-hidden="true">
+              <svg viewBox="0 0 240 68" fill="none" preserveAspectRatio="none">
+                <path d="M0 60 L30 54 L60 56 L90 44 L120 47 L150 33 L180 36 L210 20 L240 12" stroke="#55ff55" stroke-width="2" vector-effect="non-scaling-stroke"/>
+                <path d="M0 64 H240" stroke="#2a3a5a" stroke-width="1" vector-effect="non-scaling-stroke"/>
+              </svg>
             </div>
+            <h4>Economy Calculator</h4>
+            <p>Model shop prices, money supply and inflation before your economy breaks.</p>
+            <div class="roadmap-meta"><span>Planned</span></div>
           </li>
           <li>
-            <div class="tool-card is-planned">
-              <div class="tool-card-top">
-                <span class="tool-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H6.5A1.5 1.5 0 0 0 5 4.5v15A1.5 1.5 0 0 0 6.5 21h11a1.5 1.5 0 0 0 1.5-1.5V8Z"/><path d="M14 3v5h5"/><path d="m10 12-2 2 2 2M14 12l2 2-2 2"/></svg></span>
-                <span class="badge">Planned</span>
-              </div>
-              <h3>Plugin Config Helper</h3>
-              <p>Fill in a form, get a valid config snippet for popular plugins.</p>
-            </div>
+            <pre class="spec spec-yaml" aria-hidden="true"><span class="k">settings:</span>
+  <span class="k">teleport-delay:</span> <span class="v">3</span>
+  <span class="k">max-homes:</span> <span class="v">5</span></pre>
+            <h4>Plugin Config Helper</h4>
+            <p>Fill in a short form and get a valid config snippet for popular plugins.</p>
+            <div class="roadmap-meta"><span>Planned</span></div>
           </li>
           <li>
-            <div class="tool-card is-planned">
-              <div class="tool-card-top">
-                <span class="tool-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 3.5 12.9 8l4.6 1.9-4.6 1.9L11 16.3 9.1 11.8 4.5 9.9 9.1 8Z"/><path d="m18 14.5.9 2.1 2.1.9-2.1.9-.9 2.1-.9-2.1-2.1-.9 2.1-.9Z"/></svg></span>
-                <span class="badge">Planned</span>
-              </div>
-              <h3>Enchantment Planner</h3>
-              <p>Organize custom enchantments: levels, rarity, conflicts and costs.</p>
+            <div class="spec spec-tooltip" aria-hidden="true">
+              <span class="t">Starforged Blade</span>
+              <span class="e">Sharpness VI</span>
+              <span class="c">Lifesteal III</span>
             </div>
+            <h4>Enchantment Planner</h4>
+            <p>Organize custom enchantments: levels, rarity, conflicts and costs.</p>
+            <div class="roadmap-meta"><span>Planned</span></div>
           </li>
-        </ul>
+        </ol>
       </div>
     </section>
 
-    <!-- Principles ---------------------------------------------------- -->
-    <section class="section" style="padding-top:0">
+    <!-- Why -------------------------------------------------------------- -->
+    <section class="band" aria-labelledby="why-title">
       <div class="container">
-        <ul class="principles">
-          <li>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4.5" y="10.5" width="15" height="10" rx="2"/><path d="M8 10.5V7a4 4 0 0 1 8 0v3.5"/></svg>
-            <h3>Runs in your browser</h3>
-            <p>No backend, no tracking, no account. Your configs never leave your device.</p>
-          </li>
-          <li>
-            <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M16 3 27 9.5v13L16 29 5 22.5v-13Z"/><path d="M5 9.5 16 16l11-6.5M16 16v13"/></svg>
-            <h3>Made for real servers</h3>
-            <p>Output uses the formats Paper, Spigot and popular plugins actually read — tested, not guessed.</p>
-          </li>
-          <li>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m8 7-5 5 5 5M16 7l5 5-5 5"/></svg>
-            <h3>Open source</h3>
-            <p>MIT licensed. Read the code, self-host it, or send a pull request.</p>
-          </li>
-        </ul>
-      </div>
-    </section>
-
-    <!-- Support ------------------------------------------------------- -->
-    <section class="section" id="support" style="padding-top:0">
-      <div class="container">
-        <div class="support">
+        <div class="band-head">
+          <h2 id="why-title">Output your plugins accept</h2>
+          <p>Most generators stop at pretty colors. These tools handle the details that make a config work the first time.</p>
+        </div>
+        <dl class="facts">
           <div>
-            <h2>Help the toolkit grow</h2>
-            <p>MC Toolkit is free and maintained in the open. A star on GitHub helps other server owners find it, and tool requests decide what gets built next.</p>
+            <dt>Placeholders stay intact</dt>
+            <dd>Color codes inside <code>%player_name%</code> break PlaceholderAPI. Every placeholder gets one color, so it still resolves.</dd>
           </div>
-          <div class="support-actions">
-            <a class="btn btn-primary" href="https://github.com/smmezp/mc-toolkit" target="_blank" rel="noopener">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3 2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9Z"/></svg>
-              Star on GitHub
-            </a>
-            <a class="btn btn-secondary" href="https://github.com/smmezp/mc-toolkit/issues/new/choose" target="_blank" rel="noopener">Request a tool</a>
+          <div>
+            <dt>Formatting survives every color</dt>
+            <dd>In Minecraft a color code resets bold and italic. The generator repeats them after each color for you.</dd>
           </div>
+          <div>
+            <dt>Nothing leaves your browser</dt>
+            <dd>No account, no tracking, no server. The code is open source under the MIT license.</dd>
+          </div>
+        </dl>
+      </div>
+    </section>
+
+    <!-- Support ---------------------------------------------------------- -->
+    <section class="band band--compact" id="support" aria-labelledby="support-title">
+      <div class="container support">
+        <div>
+          <h2 id="support-title">Help the toolkit grow</h2>
+          <p>A star on GitHub helps other server owners find MC Toolkit. Tool requests decide what gets built after the current roadmap.</p>
+        </div>
+        <div class="support-actions">
+          <a class="btn btn-primary" href="https://github.com/smmezp/mc-toolkit" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3 2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9Z"/></svg>
+            Star on GitHub
+          </a>
+          <a class="btn btn-secondary" href="https://github.com/smmezp/mc-toolkit/issues/new/choose" target="_blank" rel="noopener">Request a tool</a>
         </div>
       </div>
     </section>
   </main>
 
   <footer class="site-footer">
-    <div class="container footer-inner">
-      <span>© <span data-year>2026</span> MC Toolkit · MIT License</span>
-      <ul class="footer-links">
-        <li><a href="tools/message-generator/">Message Generator</a></li>
-        <li><a href="https://github.com/smmezp/mc-toolkit" target="_blank" rel="noopener">Source code</a></li>
-        <li><a href="https://github.com/smmezp/mc-toolkit/issues" target="_blank" rel="noopener">Report an issue</a></li>
-      </ul>
-      <p class="footer-legal">NOT AN OFFICIAL MINECRAFT PRODUCT. NOT APPROVED BY OR ASSOCIATED WITH MOJANG OR MICROSOFT. Minecraft is a trademark of Mojang AB.</p>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-about">
+          <a class="brand" href="./">
+            <svg viewBox="0 0 32 32" fill="none" aria-hidden="true">
+              <path d="M16 3 27 9.5v13L16 29 5 22.5v-13Z" stroke="#7dd8f0" stroke-width="1.8" stroke-linejoin="round"/>
+              <path d="M5 9.5 16 16l11-6.5M16 16v13" stroke="#7dd8f0" stroke-opacity=".45" stroke-width="1.8" stroke-linejoin="round"/>
+              <rect x="14" y="14" width="4" height="4" fill="#4c7dff"/>
+            </svg>
+            <span translate="no">MC Toolkit</span>
+          </a>
+          <p>Free, open-source tools for people who run Minecraft servers.</p>
+        </div>
+        <div class="footer-col">
+          <h2>Tools</h2>
+          <ul>
+            <li><a href="tools/message-generator/">Message Generator</a></li>
+            <li><a href="#tools">Roadmap</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h2>Project</h2>
+          <ul>
+            <li><a href="https://github.com/smmezp/mc-toolkit" target="_blank" rel="noopener">Source code</a></li>
+            <li><a href="https://github.com/smmezp/mc-toolkit/issues" target="_blank" rel="noopener">Report an issue</a></li>
+            <li><a href="https://github.com/smmezp/mc-toolkit/blob/main/LICENSE" target="_blank" rel="noopener">MIT License</a></li>
+          </ul>
+        </div>
+      </div>
+      <p class="footer-legal">© <span data-year>2026</span> MC Toolkit contributors. Not an official Minecraft product. Not approved by or associated with Mojang or Microsoft. Minecraft is a trademark of Mojang AB.</p>
     </div>
   </footer>
 

@@ -13,7 +13,7 @@ Thanks for helping! MC Toolkit is a static site: plain HTML, CSS and JavaScript,
 
 - 2-space indentation, single quotes in JS, semicolons.
 - Each JS file is wrapped in an IIFE with `'use strict'`. Shared code is exposed on one global (`MCText`, `MCT`).
-- Use the CSS custom properties in `css/main.css` (`--sky`, `--violet`, `--surface`…) instead of new hard-coded colors.
+- Use the CSS custom properties in `css/main.css` (`--cyan`, `--lapis`, `--deep`…) instead of new hard-coded colors. See [docs/DESIGN.md](docs/DESIGN.md).
 - Keep text inputs at `font-size: 16px` or more to avoid zoom on iOS.
 
 ## Before opening a pull request

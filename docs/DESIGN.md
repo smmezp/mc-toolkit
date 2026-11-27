@@ -57,6 +57,20 @@ breadcrumb, h1, one-sentence description
 #guide              steps, reference table, FAQ
 ```
 
+## Shared components
+
+| Component | Where | Used by |
+| --- | --- | --- |
+| Gradient editor, format toolbar, mobile copy bar | `js/lib/controls.js` | Message, MOTD |
+| Text engine, legacy/hex/MiniMessage serializers, `pixelWidth()` | `js/lib/mc-text.js` | All tools |
+| `.tabs` (segmented look, tab semantics) | `css/tool.css` | MOTD lines |
+| `.meter` (width / limit indicator, text + bar) | `css/tool.css` | MOTD |
+| `.serverlist` row (`--gui` = one GUI pixel) | `css/main.css` | MOTD, homepage |
+| `.feature` card (`--id` sets the check color) | `css/main.css` | Homepage |
+
+A tab panel wraps several fields, so `.field + .tabpanel` spacing rules exist; use the
+`.tabpanel` class on any new one.
+
 ## Checks before shipping a page
 
 1. Phone width (390px) and desktop: no horizontal scroll.

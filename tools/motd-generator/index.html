@@ -1,0 +1,381 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Minecraft MOTD Generator with Server List Preview — MC Toolkit</title>
+  <meta name="description" content="Create a Minecraft server MOTD with colors, gradients and centering. Live server list preview, line width check, and output for server.properties, MiniMOTD and Velocity.">
+  <link rel="canonical" href="https://smmezp.github.io/mc-toolkit/tools/motd-generator/">
+  <meta name="theme-color" content="#050912">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="MC Toolkit">
+  <meta property="og:title" content="Minecraft MOTD Generator">
+  <meta property="og:description" content="Colors, gradients and centering for your server list MOTD, with a live preview. Output for server.properties, MiniMOTD and Velocity.">
+  <meta property="og:url" content="https://smmezp.github.io/mc-toolkit/tools/motd-generator/">
+  <meta property="og:image" content="https://smmezp.github.io/mc-toolkit/assets/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../../assets/apple-touch-icon.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Pixelify+Sans:wght@400;700&family=Schibsted+Grotesk:wght@400;500;600;700;800&display=swap">
+  <link rel="stylesheet" href="../../css/main.css">
+  <link rel="stylesheet" href="../../css/tool.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Minecraft MOTD Generator",
+    "url": "https://smmezp.github.io/mc-toolkit/tools/motd-generator/",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "Any (web browser)",
+    "description": "Design a Minecraft server MOTD with a live server list preview and export it for server.properties, MiniMOTD or Velocity.",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+    "isPartOf": { "@type": "WebSite", "name": "MC Toolkit", "url": "https://smmezp.github.io/mc-toolkit/" }
+  }
+  </script>
+</head>
+<body class="tool-page">
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="../../" aria-label="MC Toolkit home">
+        <svg viewBox="0 0 32 32" fill="none" aria-hidden="true">
+          <path d="M16 3 27 9.5v13L16 29 5 22.5v-13Z" stroke="#7dd8f0" stroke-width="1.8" stroke-linejoin="round"/>
+          <path d="M5 9.5 16 16l11-6.5M16 16v13" stroke="#7dd8f0" stroke-opacity=".45" stroke-width="1.8" stroke-linejoin="round"/>
+          <rect x="14" y="14" width="4" height="4" fill="#4c7dff"/>
+        </svg>
+        <span translate="no">MC Toolkit</span>
+      </a>
+      <nav class="site-nav" aria-label="Main">
+        <div class="menu" data-menu>
+          <button class="nav-item" type="button" aria-expanded="false" aria-controls="tools-menu">
+            Tools
+            <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+          </button>
+          <div class="menu-panel" id="tools-menu" hidden>
+            <ul class="menu-list">
+              <li><a class="menu-link" href="../message-generator/" style="--dot: var(--id-aqua)"><span class="menu-dot"></span>Message Generator<span class="menu-status is-live">Live</span></a></li>
+              <li><a class="menu-link" href="./" aria-current="page" style="--dot: var(--id-blue)"><span class="menu-dot"></span>MOTD Generator<span class="menu-status is-live">Live</span></a></li>
+              <li><span class="menu-link is-planned" style="--dot: var(--id-gold)"><span class="menu-dot"></span>Rank Price Calculator<span class="menu-status">Planned</span></span></li>
+              <li><span class="menu-link is-planned" style="--dot: var(--id-pink)"><span class="menu-dot"></span>Crate Reward Generator<span class="menu-status">Planned</span></span></li>
+              <li><span class="menu-link is-planned" style="--dot: var(--id-green)"><span class="menu-dot"></span>Economy Calculator<span class="menu-status">Planned</span></span></li>
+              <li><span class="menu-link is-planned" style="--dot: var(--id-gray)"><span class="menu-dot"></span>Plugin Config Helper<span class="menu-status">Planned</span></span></li>
+              <li><span class="menu-link is-planned" style="--dot: var(--id-purple)"><span class="menu-dot"></span>Enchantment Planner<span class="menu-status">Planned</span></span></li>
+            </ul>
+            <p class="menu-foot">Need something else? <a href="https://github.com/smmezp/mc-toolkit/issues/new/choose" target="_blank" rel="noopener">Request a tool</a></p>
+          </div>
+        </div>
+        <a class="nav-item nav-github" href="https://github.com/smmezp/mc-toolkit" target="_blank" rel="noopener" aria-label="MC Toolkit on GitHub">
+          <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>
+          <span class="nav-label">GitHub</span>
+        </a>
+      </nav>
+    </div>
+  </header>
+  <main id="main">
+    <section class="tool-hero">
+      <div class="container">
+        <ol class="breadcrumb">
+          <li><a href="../../">Home</a></li>
+          <li><a href="../../#tools">Tools</a></li>
+          <li aria-current="page">MOTD Generator</li>
+        </ol>
+        <h1>MOTD Generator</h1>
+        <p>Design the two lines players see under your server’s name in their multiplayer list, check that they fit, and copy the config for your server.</p>
+      </div>
+    </section>
+
+    <div class="container">
+      <div class="workspace">
+        <!-- Preview ------------------------------------------------------ -->
+        <section class="stage" aria-labelledby="preview-title">
+          <div class="stage-bar">
+            <h2 class="pane-title" id="preview-title">Server list preview</h2>
+            <p class="hint stage-note">Line widths use Minecraft’s real font sizes.</p>
+          </div>
+          <div class="serverlist" id="motd-preview" role="img" aria-label="Server list preview">
+            <div class="sl-entry is-dim" aria-hidden="true">
+              <svg class="sl-icon" viewBox="0 0 8 8" shape-rendering="crispEdges" aria-hidden="true"><rect width="8" height="8" fill="#4a4a4a"/><rect x="1" y="1" width="6" height="6" fill="#6b6b6b"/><rect x="2" y="2" width="4" height="4" fill="#4a4a4a"/></svg>
+              <div class="sl-body">
+                <div class="sl-head"><span class="sl-name">A Minecraft Server</span><span class="sl-status"><span>3<span class="slash">/</span>20</span><span class="sl-ping"><i></i><i></i><i></i><i></i><i></i></span></span></div>
+                <div class="sl-motd"><div class="mc-line"><span style="color:#aaaaaa">A Minecraft Server</span></div></div>
+              </div>
+            </div>
+            <div class="sl-entry is-selected">
+              <img class="sl-icon" id="motd-icon" alt="" width="64" height="64" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8' shape-rendering='crispEdges'%3E%3Crect width='8' height='8' fill='%23866043'/%3E%3Crect width='8' height='3' fill='%235d9c3a'/%3E%3Crect y='3' width='8' height='1' fill='%234a7d2e'/%3E%3Crect x='1' y='3' width='1' height='2' fill='%235d9c3a'/%3E%3Crect x='5' y='3' width='1' height='1' fill='%235d9c3a'/%3E%3Crect x='2' y='5' width='1' height='1' fill='%23704e35'/%3E%3Crect x='6' y='6' width='1' height='1' fill='%23704e35'/%3E%3Crect x='4' y='1' width='1' height='1' fill='%2370b44a'/%3E%3C/svg%3E">
+              <div class="sl-body">
+                <div class="sl-head"><span class="sl-name" id="motd-name-out">Skyreach</span><span class="sl-status"><span id="motd-players-out">128<span class="slash">/</span>500</span><span class="sl-ping" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span></span></div>
+                <div class="sl-motd" id="motd-lines"></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <div class="ws-body">
+          <!-- Editor ----------------------------------------------------- -->
+          <section class="ws-pane ws-editor" aria-labelledby="editor-title">
+            <div class="pane-head">
+              <h2 class="pane-title" id="editor-title">MOTD</h2>
+              <button class="btn btn-quiet btn-sm" type="button" id="motd-reset"><span data-label>Reset to example</span></button>
+            </div>
+
+            <div class="field">
+              <div class="label-row">
+                <span class="label" id="line-label">Editing</span>
+                <div class="tabs" role="tablist" aria-labelledby="line-label">
+                  <button type="button" role="tab" id="tab-1" aria-selected="true" aria-controls="line-panel" data-line="0">Line 1 <span class="tab-meta" data-meta></span></button>
+                  <button type="button" role="tab" id="tab-2" aria-selected="false" aria-controls="line-panel" data-line="1" tabindex="-1">Line 2 <span class="tab-meta" data-meta></span></button>
+                </div>
+              </div>
+            </div>
+
+            <div class="tabpanel" id="line-panel" role="tabpanel" aria-labelledby="tab-1">
+              <div class="field">
+                <label class="label" for="motd-text" id="motd-text-label">Text for line 1</label>
+                <div class="editor-box">
+                  <div class="toolbar" role="toolbar" aria-label="Formatting" aria-controls="motd-text">
+                    <button class="tool-btn" type="button" data-format="bold" aria-pressed="false" title="Bold (&amp;l), Ctrl+B"><b aria-hidden="true">B</b><span class="sr-only">Bold</span></button>
+                    <button class="tool-btn" type="button" data-format="italic" aria-pressed="false" title="Italic (&amp;o), Ctrl+I"><i aria-hidden="true">I</i><span class="sr-only">Italic</span></button>
+                    <button class="tool-btn" type="button" data-format="underline" aria-pressed="false" title="Underline (&amp;n), Ctrl+U"><u aria-hidden="true">U</u><span class="sr-only">Underline</span></button>
+                    <button class="tool-btn" type="button" data-format="strikethrough" aria-pressed="false" title="Strikethrough (&amp;m)"><s aria-hidden="true">S</s><span class="sr-only">Strikethrough</span></button>
+                    <span class="toolbar-sep" aria-hidden="true"></span>
+                    <button class="tool-btn" type="button" data-format="obfuscated" aria-pressed="false" title="Obfuscated (&amp;k)"><span class="obf" aria-hidden="true">#?!</span><span class="tool-btn-label" aria-hidden="true">Obfuscated</span><span class="sr-only">Obfuscated</span></button>
+                  </div>
+                  <input class="input" id="motd-text" name="motd-line" type="text" maxlength="200" spellcheck="false" autocomplete="off" autocapitalize="off" placeholder="Example: Survival | Skyblock | Events…" aria-describedby="motd-meter-text">
+                </div>
+                <div class="meter" id="motd-meter">
+                  <div class="meter-track" aria-hidden="true"><div class="meter-fill"></div></div>
+                  <p class="meter-text" id="motd-meter-text"></p>
+                </div>
+              </div>
+
+              <div class="field">
+                <div class="label-row">
+                  <span class="label" id="mode-label">Color</span>
+                  <div class="segmented segmented--sm" role="radiogroup" aria-labelledby="mode-label">
+                    <label><input type="radio" name="mode" value="solid"><span>Solid</span></label>
+                    <label><input type="radio" name="mode" value="gradient" checked><span>Gradient</span></label>
+                    <label><input type="radio" name="mode" value="rainbow"><span>Rainbow</span></label>
+                  </div>
+                </div>
+
+                <div class="grad" id="motd-grad">
+                  <div class="grad-fill" id="motd-gradient-bar" aria-hidden="true"></div>
+                  <div id="motd-stops" role="group" aria-label="Gradient colors"></div>
+                </div>
+
+                <div class="stop-editor" id="motd-stop-editor">
+                  <input class="stop-color" id="motd-color" name="stop-color" type="color" aria-label="Pick the selected color">
+                  <input class="input input-mono stop-hex" id="motd-hex" name="stop-hex" type="text" maxlength="7" spellcheck="false" autocomplete="off" autocapitalize="off" aria-label="Hex code of the selected color" aria-describedby="motd-hex-error">
+                  <div class="stop-actions">
+                    <button class="btn btn-quiet btn-sm" type="button" id="motd-remove">Remove</button>
+                    <button class="btn btn-quiet btn-sm" type="button" id="motd-reverse">Reverse</button>
+                    <button class="btn btn-secondary btn-sm" type="button" id="motd-add-stop">Add color</button>
+                  </div>
+                </div>
+                <p class="hint stop-error" id="motd-hex-error" hidden>Use a 3 or 6 digit hex code, like #7dd8f0.</p>
+              </div>
+
+              <div class="field" id="motd-presets-field">
+                <span class="label" id="presets-label">Presets</span>
+                <div class="presets" id="motd-presets" role="group" aria-labelledby="presets-label"></div>
+              </div>
+
+              <div class="field">
+                <div>
+                  <button class="btn btn-secondary btn-sm" type="button" id="motd-copy-style"><span data-label>Use this style on line 2</span></button>
+                </div>
+              </div>
+            </div>
+
+            <div class="field">
+              <label class="switch">
+                <input type="checkbox" id="motd-center" name="center-lines" checked>
+                <span class="switch-track" aria-hidden="true"></span>
+                <span class="switch-text">
+                  <span class="label">Center both lines</span>
+                  <span class="hint">Adds leading spaces measured with Minecraft’s font, since the server list has no centering of its own.</span>
+                </span>
+              </label>
+            </div>
+
+            <fieldset class="field">
+              <legend>Server entry</legend>
+              <div class="field-row">
+                <div class="field">
+                  <label class="label" for="motd-name">Name in the list</label>
+                  <input class="input" id="motd-name" name="server-name" type="text" maxlength="40" autocomplete="off" spellcheck="false" aria-describedby="motd-name-hint">
+                </div>
+                <div class="field">
+                  <span class="label" id="players-label">Players</span>
+                  <div class="file-row players-row" role="group" aria-labelledby="players-label">
+                    <input class="input" id="motd-online" name="players-online" type="number" inputmode="numeric" min="0" max="999999" aria-label="Players online">
+                    <span aria-hidden="true" class="hint">of</span>
+                    <input class="input" id="motd-max" name="players-max" type="number" inputmode="numeric" min="0" max="999999" aria-label="Player limit">
+                  </div>
+                </div>
+              </div>
+              <p class="hint" id="motd-name-hint">Players choose this name themselves when they add your server. It only changes the preview.</p>
+
+              <div class="field">
+                <span class="label" id="icon-label">Server icon</span>
+                <div class="file-row">
+                  <input class="file-input" id="motd-icon-file" name="server-icon" type="file" accept="image/*" aria-labelledby="icon-label icon-choose" aria-describedby="motd-icon-status">
+                  <label class="btn btn-secondary btn-sm" for="motd-icon-file" id="icon-choose">Check an image</label>
+                  <button class="btn btn-secondary btn-sm" type="button" id="motd-icon-download" hidden><span data-label>Download 64 × 64 PNG</span></button>
+                  <button class="btn btn-quiet btn-sm" type="button" id="motd-icon-clear" hidden>Remove image</button>
+                </div>
+                <p class="file-status" id="motd-icon-status" aria-live="polite">Minecraft shows <code translate="no">server-icon.png</code>, a 64 × 64 PNG in your server folder. Your image stays on your device.</p>
+              </div>
+            </fieldset>
+          </section>
+
+          <!-- Output ----------------------------------------------------- -->
+          <section class="ws-pane ws-output" aria-labelledby="output-title">
+            <div class="pane-head">
+              <h2 class="pane-title" id="output-title">Output</h2>
+            </div>
+
+            <fieldset class="field">
+              <legend>Where your MOTD lives</legend>
+              <div class="format-tiles" translate="no">
+                <label class="tile"><input type="radio" name="target" value="properties" checked><span><strong>server.properties</strong><code>motd=</code></span></label>
+                <label class="tile"><input type="radio" name="target" value="minimotd"><span><strong>MiniMOTD</strong><code>main.conf</code></span></label>
+                <label class="tile"><input type="radio" name="target" value="velocity"><span><strong>Velocity</strong><code>velocity.toml</code></span></label>
+                <label class="tile"><input type="radio" name="target" value="hexlines"><span><strong>Hex lines</strong><code>&amp;#RRGGBB</code></span></label>
+              </div>
+              <p class="hint format-hint" id="motd-target-hint" aria-live="polite"></p>
+            </fieldset>
+
+            <div class="field">
+              <div class="code-box">
+                <div class="code-box-head">
+                  <p class="code-box-file" id="motd-file"></p>
+                  <button class="btn btn-primary btn-sm" type="button" id="motd-copy">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a1 1 0 0 1 1-1h10"/></svg>
+                    <span data-label>Copy config</span>
+                  </button>
+                </div>
+                <pre id="motd-output" tabindex="0" role="region" aria-label="Generated config" translate="no"></pre>
+              </div>
+              <div class="output-foot">
+                <p class="stats" id="motd-stats"></p>
+                <button class="btn btn-secondary btn-sm" type="button" id="motd-share">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1"/><path d="M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/></svg>
+                  <span data-label>Copy share link</span>
+                </button>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile: copy without scrolling to the output -->
+    <div class="copybar is-hidden" id="motd-copybar">
+      <p class="copybar-info"><strong id="motd-copybar-target">server.properties</strong>Ready to paste</p>
+      <button class="btn btn-primary btn-sm" type="button" id="motd-copy-mobile"><span data-label>Copy config</span></button>
+    </div>
+
+    <!-- Guide ------------------------------------------------------------ -->
+    <section class="band band--after-tool" id="guide">
+      <div class="container guide">
+        <div>
+          <h2>How to set your MOTD</h2>
+          <ol class="steps">
+            <li><strong>Pick where it lives</strong>Most servers use <code>server.properties</code>. If you run MiniMOTD or a Velocity proxy, the MOTD lives in that config instead.</li>
+            <li><strong>Paste it in</strong>Replace the existing MOTD setting with the copied text. Keep the rest of the file as it is.</li>
+            <li><strong>Restart and check</strong>Restart the server (or reload the plugin), then refresh your multiplayer list to see it.</li>
+          </ol>
+        </div>
+
+        <div>
+          <h2>Where to paste it</h2>
+          <div class="table-wrap" tabindex="0" role="region" aria-label="Where to paste the MOTD, scrolls sideways on small screens">
+            <table class="table">
+              <thead>
+                <tr><th scope="col">Target</th><th scope="col">File</th><th scope="col">Notes</th></tr>
+              </thead>
+              <tbody>
+                <tr><td translate="no">server.properties</td><td><code translate="no">server.properties</code></td><td>Replace the <code translate="no">motd=</code> line. Supports the 16 classic colors, so gradients use the closest of them. Works on vanilla, Spigot and Paper.</td></tr>
+                <tr><td translate="no">MiniMOTD</td><td><code translate="no">plugins/MiniMOTD/main.conf</code></td><td>Replace the <code translate="no">motds</code> block. Full hex gradients. The plugin also supports several rotating MOTDs and icons.</td></tr>
+                <tr><td translate="no">Velocity</td><td><code translate="no">velocity.toml</code></td><td>Replace the <code translate="no">motd =</code> line on your proxy. Velocity reads MiniMessage, so hex gradients work.</td></tr>
+                <tr><td>Hex lines</td><td>Your plugin’s config</td><td>One line per row in <code translate="no">&amp;#RRGGBB</code> format, for other MOTD plugins that read hex codes.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div>
+          <h2>Questions</h2>
+          <div class="faq">
+            <details>
+              <summary>Why does my gradient look different in server.properties?</summary>
+              <p>The <code translate="no">motd</code> setting only understands the 16 classic Minecraft colors, so each letter gets the closest one. For smooth hex gradients, use MiniMOTD on Paper or Spigot, or the Velocity target on a proxy.</p>
+            </details>
+            <details>
+              <summary>What happens if a line is too wide?</summary>
+              <p>The server list fits about 270 pixels per line. Longer text wraps onto the next line, and anything past the second line is hidden. The width meter and the preview show this before you paste.</p>
+            </details>
+            <details>
+              <summary>Why is centering done with spaces?</summary>
+              <p>Minecraft has no centering setting for the MOTD. The generator measures each line with the game’s font and adds the right number of spaces in front, the same thing server owners do by hand.</p>
+            </details>
+            <details>
+              <summary>How do I add a server icon?</summary>
+              <p>Save a 64 × 64 PNG named <code translate="no">server-icon.png</code> in the server’s main folder, next to <code translate="no">server.properties</code>, then restart. Use “Check an image” above to test yours or convert it to the right size.</p>
+            </details>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-about">
+          <a class="brand" href="../../">
+            <svg viewBox="0 0 32 32" fill="none" aria-hidden="true">
+              <path d="M16 3 27 9.5v13L16 29 5 22.5v-13Z" stroke="#7dd8f0" stroke-width="1.8" stroke-linejoin="round"/>
+              <path d="M5 9.5 16 16l11-6.5M16 16v13" stroke="#7dd8f0" stroke-opacity=".45" stroke-width="1.8" stroke-linejoin="round"/>
+              <rect x="14" y="14" width="4" height="4" fill="#4c7dff"/>
+            </svg>
+            <span translate="no">MC Toolkit</span>
+          </a>
+          <p>Free, open-source tools for people who run Minecraft servers.</p>
+        </div>
+        <div class="footer-col">
+          <h2>Tools</h2>
+          <ul>
+            <li><a href="../message-generator/">Message Generator</a></li>
+            <li><a href="./" aria-current="page">MOTD Generator</a></li>
+            <li><a href="../../#tools">Roadmap</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h2>Project</h2>
+          <ul>
+            <li><a href="https://github.com/smmezp/mc-toolkit" target="_blank" rel="noopener">Source code</a></li>
+            <li><a href="https://github.com/smmezp/mc-toolkit/issues" target="_blank" rel="noopener">Report an issue</a></li>
+            <li><a href="https://github.com/smmezp/mc-toolkit/blob/main/LICENSE" target="_blank" rel="noopener">MIT License</a></li>
+          </ul>
+        </div>
+      </div>
+      <p class="footer-legal">© <span data-year>2026</span> MC Toolkit contributors. Not an official Minecraft product. Not approved by or associated with Mojang or Microsoft. Minecraft is a trademark of Mojang AB.</p>
+    </div>
+  </footer>
+  <script src="../../js/site.js" defer></script>
+  <script src="../../js/lib/mc-text.js" defer></script>
+  <script src="../../js/lib/controls.js" defer></script>
+  <script src="../../js/tools/motd-generator.js" defer></script>
+</body>
+</html>

@@ -58,3 +58,27 @@
 
   render();
 })();
+
+/* MOTD Generator specimen: same engine and centering as the tool. */
+(function () {
+  'use strict';
+
+  var MCText = window.MCText;
+  var target = document.getElementById('motd-specimen');
+  if (!MCText || !target) return;
+
+  var LINE_WIDTH = 270;
+
+  function line(text, colors, bold) {
+    var built = MCText.build(text, { mode: colors.length > 1 ? 'gradient' : 'solid', colors: colors, format: 'hex' }).lines[0];
+    var pad = Math.floor((LINE_WIDTH - MCText.pixelWidth(text, bold)) / 2 / MCText.SPACE_WIDTH);
+    built.runs.forEach(function (r) { r.bold = bold; });
+    built.runs.unshift({ text: new Array(pad + 1).join(' '), hex: 'ffffff' });
+    return built;
+  }
+
+  MCText.renderPreview(target, [
+    line('Skyreach Network', ['55ffff', '5555ff'], true),
+    line('Survival | Skyblock | Events', ['aaaaaa'], false)
+  ], {});
+})();

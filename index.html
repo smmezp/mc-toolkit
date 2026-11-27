@@ -58,7 +58,7 @@
           <div class="menu-panel" id="tools-menu" hidden>
             <ul class="menu-list">
               <li><a class="menu-link" href="tools/message-generator/" style="--dot: var(--id-aqua)"><span class="menu-dot"></span>Message Generator<span class="menu-status is-live">Live</span></a></li>
-              <li><span class="menu-link is-planned" style="--dot: var(--id-blue)"><span class="menu-dot"></span>MOTD Generator<span class="menu-status">Next</span></span></li>
+              <li><a class="menu-link" href="tools/motd-generator/" style="--dot: var(--id-blue)"><span class="menu-dot"></span>MOTD Generator<span class="menu-status is-live">Live</span></a></li>
               <li><span class="menu-link is-planned" style="--dot: var(--id-gold)"><span class="menu-dot"></span>Rank Price Calculator<span class="menu-status">Planned</span></span></li>
               <li><span class="menu-link is-planned" style="--dot: var(--id-pink)"><span class="menu-dot"></span>Crate Reward Generator<span class="menu-status">Planned</span></span></li>
               <li><span class="menu-link is-planned" style="--dot: var(--id-green)"><span class="menu-dot"></span>Economy Calculator<span class="menu-status">Planned</span></span></li>
@@ -124,7 +124,7 @@
       <div class="container">
         <div class="band-head">
           <h2 id="tools-title">The toolkit</h2>
-          <p>Each tool does one job and gives you something you can paste into your server. One is ready today and six more are being built in order.</p>
+          <p>Each tool does one job and gives you something you can paste into your server. Two are ready today and five more are being built in order.</p>
         </div>
 
         <article class="feature" aria-labelledby="feature-title">
@@ -153,22 +153,39 @@
           </div>
         </article>
 
+        <article class="feature" aria-labelledby="feature-motd-title" style="--id: var(--id-blue)">
+          <div class="feature-copy">
+            <span class="status">Ready to use</span>
+            <h3 id="feature-motd-title">MOTD Generator</h3>
+            <p>Design the two lines players see under your server’s name in their multiplayer list.</p>
+            <ul class="checks">
+              <li>Live server list preview, with your own icon</li>
+              <li>Width check and centering measured with Minecraft’s font</li>
+              <li>Output for server.properties, MiniMOTD and Velocity</li>
+              <li>Turns any image into a 64 × 64 server icon</li>
+            </ul>
+            <a class="btn btn-primary" href="tools/motd-generator/">Open MOTD Generator</a>
+          </div>
+          <div class="feature-spec">
+            <p class="spec-caption">How it looks in the multiplayer list:</p>
+            <div class="serverlist" aria-label="Example server list entry: Skyreach Network, Survival, Skyblock and Events" role="img">
+              <div class="sl-entry is-selected">
+                <img class="sl-icon" alt="" width="64" height="64" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8' shape-rendering='crispEdges'%3E%3Crect width='8' height='8' fill='%23866043'/%3E%3Crect width='8' height='3' fill='%235d9c3a'/%3E%3Crect y='3' width='8' height='1' fill='%234a7d2e'/%3E%3Crect x='1' y='3' width='1' height='2' fill='%235d9c3a'/%3E%3Crect x='5' y='3' width='1' height='1' fill='%235d9c3a'/%3E%3Crect x='2' y='5' width='1' height='1' fill='%23704e35'/%3E%3Crect x='6' y='6' width='1' height='1' fill='%23704e35'/%3E%3Crect x='4' y='1' width='1' height='1' fill='%2370b44a'/%3E%3C/svg%3E">
+                <div class="sl-body">
+                  <div class="sl-head"><span class="sl-name">Skyreach</span><span class="sl-status"><span>128<span class="slash">/</span>500</span><span class="sl-ping"><i></i><i></i><i></i><i></i><i></i></span></span></div>
+                  <div class="sl-motd" id="motd-specimen"><div class="mc-line"><span style="color:#55ffff">      Skyreach Network</span></div><div class="mc-line"><span style="color:#aaaaaa">  Survival | Skyblock | Events</span></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+
         <div class="roadmap-head">
           <h3>Coming next</h3>
           <p>Built in this order. <a href="https://github.com/smmezp/mc-toolkit/issues/new/choose" target="_blank" rel="noopener">Suggest a change</a></p>
         </div>
 
         <ol class="roadmap">
-          <li>
-            <div class="spec spec-motd" aria-hidden="true">
-              <span class="icon"></span>
-              <div><div class="name">Skyreach Network</div><div class="l1">Survival | Skyblock | Events</div><div class="l2">New season starts Friday</div></div>
-              <span class="ping">128/500</span>
-            </div>
-            <h4>MOTD Generator</h4>
-            <p>Design the two-line message players see in their server list, with a live preview.</p>
-            <div class="roadmap-meta is-next"><span>In progress</span></div>
-          </li>
           <li>
             <div class="spec spec-bars" style="--c: var(--id-gold)" aria-hidden="true">
               <div><span>VIP</span><i style="--w: 30%"></i><b>$4.99</b></div>
@@ -177,7 +194,7 @@
             </div>
             <h4>Rank Price Calculator</h4>
             <p>Price VIP ranks by their perks and your audience, and compare tiers side by side.</p>
-            <div class="roadmap-meta"><span>Planned</span></div>
+            <div class="roadmap-meta is-next"><span>Next up</span></div>
           </li>
           <li>
             <div class="spec spec-bars" style="--c: var(--id-pink)" aria-hidden="true">
@@ -282,6 +299,7 @@
           <h2>Tools</h2>
           <ul>
             <li><a href="tools/message-generator/">Message Generator</a></li>
+            <li><a href="tools/motd-generator/">MOTD Generator</a></li>
             <li><a href="#tools">Roadmap</a></li>
           </ul>
         </div>

@@ -142,6 +142,12 @@
   margin-top: 24px;
 }
 
+/* A tab panel groups fields, so spacing has to reach across it. */
+.field + .tabpanel,
+.tabpanel + .field {
+  margin-top: 24px;
+}
+
 .field-row {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
@@ -716,6 +722,17 @@
     min-height: 64px;
   }
 
+  /* MOTD: only the row that matters, as large as the screen allows */
+  .stage .stage-note,
+  .stage .sl-entry.is-dim {
+    display: none;
+  }
+
+  .stage .serverlist {
+    --gui: min(2px, calc((100vw - 58px) / 309));
+    padding: calc(var(--gui) * 6) 0;
+  }
+
   .copybar {
     position: fixed;
     left: 0;
@@ -908,5 +925,154 @@
 .faq details p {
   max-width: 70ch;
   padding: 0 0 20px;
+  color: var(--text-2);
+}
+
+/* ==================================================================== */
+/* Tabs (same look as the segmented control, tab semantics)              */
+/* ==================================================================== */
+
+.tabs {
+  display: inline-flex;
+  gap: 2px;
+  padding: 3px;
+  border: 1px solid var(--control);
+  border-radius: 10px;
+  background: var(--night);
+}
+
+.tabs [role="tab"] {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 8px;
+  min-height: 32px;
+  padding: 5px 12px;
+  border: 0;
+  border-radius: 7px;
+  background: transparent;
+  color: var(--text-2);
+  font: inherit;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.15s, color 0.15s;
+}
+
+.tabs [role="tab"]:hover {
+  color: var(--text);
+}
+
+.tabs [role="tab"][aria-selected="true"] {
+  background: var(--deep-2);
+  color: var(--text);
+  box-shadow: 0 0 0 1px var(--rule-2) inset;
+}
+
+.tabs [role="tab"]:focus-visible {
+  outline-offset: 1px;
+}
+
+.tab-meta {
+  font-size: 0.75rem;
+  color: var(--text-3);
+  font-variant-numeric: tabular-nums;
+}
+
+.tab-meta.is-over {
+  color: var(--danger);
+}
+
+/* Single-line input inside the editor box */
+.editor-box .input {
+  border: 0;
+  border-radius: 0 0 var(--r-control) var(--r-control);
+  background: transparent;
+}
+
+.editor-box .input:focus {
+  box-shadow: none;
+}
+
+/* ==================================================================== */
+/* Width meter                                                           */
+/* ==================================================================== */
+
+.meter {
+  display: grid;
+  gap: 6px;
+}
+
+.meter-track {
+  position: relative;
+  height: 4px;
+  border-radius: 2px;
+  background: var(--deep-2);
+  overflow: hidden;
+}
+
+.meter-fill {
+  position: absolute;
+  inset: 0;
+  border-radius: 2px;
+  background: var(--text-2);
+  transform: scaleX(var(--fill, 0));
+  transform-origin: left center;
+  transition: transform 0.2s var(--ease);
+}
+
+.meter.is-over .meter-fill {
+  background: var(--danger);
+}
+
+.meter-text {
+  font-size: 0.8125rem;
+  color: var(--text-3);
+  font-variant-numeric: tabular-nums;
+}
+
+.meter.is-over .meter-text {
+  color: var(--danger);
+}
+
+/* ==================================================================== */
+/* File picker                                                           */
+/* ==================================================================== */
+
+.file-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.players-row .input {
+  flex: 1 1 60px;
+}
+
+.file-input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+}
+
+.file-input:focus-visible + .btn {
+  outline: 2px solid var(--lapis);
+  outline-offset: 2px;
+}
+
+.file-status {
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  color: var(--text-2);
+}
+
+.file-status.is-error {
+  color: var(--danger);
+}
+
+.code-box-file {
+  padding-left: 6px;
+  font-size: 0.8125rem;
   color: var(--text-2);
 }

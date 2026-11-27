@@ -13,9 +13,10 @@
 
   var MCText = window.MCText;
   var MCT = window.MCT;
-  if (!MCText || !MCT) return;
+  var MCControls = window.MCControls;
+  if (!MCText || !MCT || !MCControls) return;
 
-  var MAX_STOPS = 8;
+  var MAX_STOPS = MCControls.MAX_STOPS;
   var MAX_TEXT = 2000;
 
   var DEFAULTS = {
@@ -31,19 +32,6 @@
     bg: 'chat'
   };
 
-  var PRESETS = [
-    { name: 'Celestial', colors: ['8ccfff', 'a78bfa'] },
-    { name: 'Aurora', colors: ['00f5a0', '00d9f5', 'a78bfa'] },
-    { name: 'Ocean', colors: ['00c6ff', '0072ff'] },
-    { name: 'Sunset', colors: ['ff7e5f', 'feb47b'] },
-    { name: 'Ember', colors: ['ff512f', 'f09819'] },
-    { name: 'Gold', colors: ['fff1a8', 'f5b700', 'c98a00'] },
-    { name: 'Mint', colors: ['43e97b', '38f9d7'] },
-    { name: 'Blossom', colors: ['ff9a9e', 'fecfef', 'a18cd1'] },
-    { name: 'Toxic', colors: ['b6ff00', '00ff6a'] },
-    { name: 'Mono', colors: ['ffffff', '8a8a8a'] }
-  ];
-
   var FORMATS = {
     hex: { name: 'Hex', hint: 'The most widely supported hex format: EssentialsX, TAB, DeluxeMenus and many more. Needs 1.16+.' },
     minimessage: { name: 'MiniMessage', hint: 'Paper and Adventure format. The plugin computes the gradient, so the output stays short.' },
@@ -54,7 +42,6 @@
   };
 
   var FORMAT_LETTERS = { bold: 'b', italic: 'i', underline: 'u', strikethrough: 's', obfuscated: 'k' };
-  var SHORTCUTS = { b: 'bold', i: 'italic', u: 'underline' };
 
   /* ------------------------------------------------------------------ */
   /* State                                                               */
@@ -130,7 +117,6 @@
   }
 
   var state = stateFromUrl();
-  var selected = 0;
 
   /* ------------------------------------------------------------------ */
   /* Elements                                                            */
@@ -168,243 +154,34 @@
     reset: $('mg-reset')
   };
 
-  function radios(name) {
-    return Array.prototype.slice.call(document.querySelectorAll('input[name="' + name + '"]'));
-  }
-
-  function setRadio(name, value) {
-    radios(name).forEach(function (r) { r.checked = r.value === value; });
-  }
+  var radios = MCControls.radios;
+  var setRadio = MCControls.setRadio;
 
   /* ------------------------------------------------------------------ */
-  /* Gradient editor                                                     */
+  /* Shared controls (js/lib/controls.js)                                */
   /* ------------------------------------------------------------------ */
 
-  function activeColors() {
-    return state.mode === 'solid' ? [state.colors[0]] : state.colors;
-  }
-
-  function renderBar() {
-    var bg;
-    if (state.mode === 'rainbow') {
-      bg = 'linear-gradient(90deg, #f00, #ff0, #0f0, #0ff, #00f, #f0f, #f00)';
-    } else if (state.mode === 'solid') {
-      bg = '#' + state.colors[0];
-    } else {
-      bg = 'linear-gradient(90deg, ' + state.colors.map(function (c) { return '#' + c; }).join(', ') + ')';
-    }
-    el.bar.style.background = bg;
-  }
-
-  /** Stop markers sit on the bar at their real (evenly spaced) positions. */
-  function renderStops() {
-    var colors = activeColors();
-    if (selected >= colors.length) selected = colors.length - 1;
-    el.stops.textContent = '';
-
-    if (state.mode !== 'rainbow') {
-      colors.forEach(function (c, i) {
-        var b = document.createElement('button');
-        b.type = 'button';
-        b.className = 'grad-stop';
-        b.dataset.index = String(i);
-        b.style.setProperty('--stop', '#' + c);
-        b.style.left = colors.length > 1 ? (i / (colors.length - 1)) * 100 + '%' : '0%';
-        b.setAttribute('aria-pressed', i === selected ? 'true' : 'false');
-        b.setAttribute('aria-label', 'Color ' + (i + 1) + ' of ' + colors.length + ', #' + c);
-        el.stops.appendChild(b);
-      });
-    }
-
-    var showEditor = state.mode !== 'rainbow';
-    el.stopEditor.hidden = !showEditor;
-    el.grad.classList.toggle('is-rainbow', !showEditor);
-    el.remove.hidden = state.mode === 'solid';
-    el.reverse.hidden = state.mode === 'solid';
-    el.addStop.hidden = state.mode === 'solid';
-    el.remove.disabled = state.colors.length <= 2;
-    el.addStop.disabled = state.colors.length >= MAX_STOPS;
-    el.presetsField.hidden = state.mode !== 'gradient';
-    renderBar();
-    syncStopEditor();
-  }
-
-  function syncStopEditor() {
-    var c = state.colors[selected];
-    el.color.value = '#' + c;
-    if (document.activeElement !== el.hex) el.hex.value = '#' + c;
-    el.hex.setAttribute('aria-invalid', 'false');
-    el.hexError.hidden = true;
-  }
-
-  function setSelectedColor(hex, fromHexInput) {
-    state.colors[selected] = hex;
-    var marker = el.stops.querySelector('[data-index="' + selected + '"]');
-    if (marker) {
-      marker.style.setProperty('--stop', '#' + hex);
-      marker.setAttribute('aria-label', 'Color ' + (selected + 1) + ' of ' + activeColors().length + ', #' + hex);
-    }
-    el.color.value = '#' + hex;
-    if (!fromHexInput) el.hex.value = '#' + hex;
-    renderBar();
-    update();
-  }
-
-  el.stops.addEventListener('click', function (e) {
-    var b = e.target.closest('.grad-stop');
-    if (!b) return;
-    selected = Number(b.dataset.index);
-    renderStops();
-    var again = el.stops.querySelector('[data-index="' + selected + '"]');
-    if (again) again.focus();
+  var gradient = MCControls.gradientEditor({
+    grad: el.grad,
+    bar: el.bar,
+    stops: el.stops,
+    stopEditor: el.stopEditor,
+    color: el.color,
+    hex: el.hex,
+    hexError: el.hexError,
+    remove: el.remove,
+    reverse: el.reverse,
+    addStop: el.addStop,
+    presetsField: el.presetsField,
+    presets: el.presets
+  }, {
+    get: function () { return state; },
+    onChange: function () { update(); }
   });
 
-  // Arrow keys move between stops.
-  el.stops.addEventListener('keydown', function (e) {
-    if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
-    var count = activeColors().length;
-    selected = (selected + (e.key === 'ArrowRight' ? 1 : count - 1)) % count;
-    renderStops();
-    el.stops.querySelector('[data-index="' + selected + '"]').focus();
-    e.preventDefault();
-  });
-
-  el.color.addEventListener('input', function () {
-    var hex = MCText.normalizeHex(el.color.value);
-    if (hex) setSelectedColor(hex, false);
-  });
-
-  el.hex.addEventListener('input', function () {
-    var raw = el.hex.value.trim();
-    var hex = MCText.normalizeHex(raw);
-    var complete = raw.replace('#', '').length === 6;
-    if (hex && complete) {
-      el.hex.setAttribute('aria-invalid', 'false');
-      el.hexError.hidden = true;
-      setSelectedColor(hex, true);
-    }
-  });
-
-  el.hex.addEventListener('change', function () {
-    var hex = MCText.normalizeHex(el.hex.value);
-    if (hex) {
-      setSelectedColor(hex, false);
-      el.hex.setAttribute('aria-invalid', 'false');
-      el.hexError.hidden = true;
-    } else {
-      el.hex.setAttribute('aria-invalid', 'true');
-      el.hexError.hidden = false;
-    }
-  });
-
-  el.hex.addEventListener('blur', function () {
-    if (el.hex.getAttribute('aria-invalid') === 'true') return;
-    el.hex.value = '#' + state.colors[selected];
-  });
-
-  el.remove.addEventListener('click', function () {
-    if (state.colors.length <= 2) return;
-    state.colors.splice(selected, 1);
-    selected = Math.max(0, selected - 1);
-    renderStops();
-    update();
-  });
-
-  el.addStop.addEventListener('click', function () {
-    if (state.colors.length >= MAX_STOPS) return;
-    // The new stop starts as a lighter shade of the current last color.
-    var last = state.colors[state.colors.length - 1];
-    state.colors.push(MCText.sampleGradient([last, 'ffffff'], 0.35));
-    selected = state.colors.length - 1;
-    renderStops();
-    update();
-    el.color.focus();
-  });
-
-  el.reverse.addEventListener('click', function () {
-    state.colors.reverse();
-    selected = state.colors.length - 1 - selected;
-    renderStops();
-    update();
-  });
-
-  /* ------------------------------------------------------------------ */
-  /* Presets                                                             */
-  /* ------------------------------------------------------------------ */
-
-  PRESETS.forEach(function (preset) {
-    var btn = document.createElement('button');
-    btn.type = 'button';
-    btn.className = 'preset';
-    var chip = document.createElement('i');
-    chip.style.background = 'linear-gradient(90deg, ' + preset.colors.map(function (c) { return '#' + c; }).join(', ') + ')';
-    chip.setAttribute('aria-hidden', 'true');
-    btn.appendChild(chip);
-    btn.appendChild(document.createTextNode(preset.name));
-    btn.addEventListener('click', function () {
-      state.colors = preset.colors.slice();
-      selected = 0;
-      renderStops();
-      update();
-      MCT.announce(preset.name + ' preset applied');
-    });
-    el.presets.appendChild(btn);
-  });
-
-  /* ------------------------------------------------------------------ */
-  /* Formatting toolbar                                                  */
-  /* ------------------------------------------------------------------ */
-
-  var formatButtons = Array.prototype.slice.call(el.toolbar.querySelectorAll('[data-format]'));
-
-  var toolbarIndex = 0;
-
-  function syncToolbar() {
-    formatButtons.forEach(function (b, i) {
-      b.setAttribute('aria-pressed', state.formats[b.dataset.format] ? 'true' : 'false');
-      // Roving tabindex: the toolbar is a single tab stop.
-      b.tabIndex = i === toolbarIndex ? 0 : -1;
-    });
-  }
-
-  function toggleFormat(name) {
-    state.formats[name] = !state.formats[name];
-    syncToolbar();
-    update();
-  }
-
-  formatButtons.forEach(function (b, i) {
-    b.addEventListener('click', function () {
-      toolbarIndex = i;
-      toggleFormat(b.dataset.format);
-    });
-  });
-
-  // Roving arrow-key navigation inside the toolbar.
-  el.toolbar.addEventListener('keydown', function (e) {
-    if (e.key === 'Home' || e.key === 'End') {
-      toolbarIndex = e.key === 'Home' ? 0 : formatButtons.length - 1;
-      syncToolbar();
-      formatButtons[toolbarIndex].focus();
-      e.preventDefault();
-      return;
-    }
-    if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
-    var i = formatButtons.indexOf(document.activeElement);
-    if (i === -1) return;
-    toolbarIndex = (i + (e.key === 'ArrowRight' ? 1 : formatButtons.length - 1)) % formatButtons.length;
-    syncToolbar();
-    formatButtons[toolbarIndex].focus();
-    e.preventDefault();
-  });
-
-  el.text.addEventListener('keydown', function (e) {
-    if (!(e.ctrlKey || e.metaKey) || e.altKey || e.shiftKey) return;
-    var name = SHORTCUTS[e.key.toLowerCase()];
-    if (!name) return;
-    e.preventDefault();
-    toggleFormat(name);
-    MCT.announce(name + (state.formats[name] ? ' on' : ' off'));
+  var toolbar = MCControls.formatToolbar(el.toolbar, el.text, {
+    get: function () { return state.formats; },
+    onChange: function () { update(); }
   });
 
   /* ------------------------------------------------------------------ */
@@ -421,7 +198,7 @@
     el.key.value = state.key;
     el.quote.value = state.quote;
     el.preview.className = 'mc-screen mc-screen--' + state.bg;
-    syncToolbar();
+    toolbar.sync();
   }
 
   el.text.addEventListener('input', function () {
@@ -433,11 +210,7 @@
   radios('mode').forEach(function (r) {
     r.addEventListener('change', function () {
       state.mode = r.value;
-      if (state.mode !== 'solid' && state.colors.length < 2) {
-        state.colors.push(MCText.sampleGradient([state.colors[0], 'ffffff'], 0.5));
-      }
-      if (state.mode === 'solid') selected = 0;
-      renderStops();
+      gradient.render(state.mode === 'solid');
       update();
     });
   });
@@ -486,9 +259,8 @@
 
   function applyState(next) {
     state = next;
-    selected = 0;
     syncControls();
-    renderStops();
+    gradient.render(true);
     update();
   }
 
@@ -522,15 +294,12 @@
     return state.view === 'yaml' ? 'Copy YAML' : 'Copy text';
   }
 
-  function setLabel(button, text) {
-    var label = button.querySelector('[data-label]');
-    if (label && !button.classList.contains('is-done')) label.textContent = text;
-  }
+  var setLabel = MCControls.setLabel;
 
   function update() {
     var result = MCText.build(state.text, {
       mode: state.mode,
-      colors: activeColors(),
+      colors: state.mode === 'solid' ? [state.colors[0]] : state.colors,
       formats: state.formats,
       protect: state.protect,
       format: state.format
@@ -596,20 +365,13 @@
   }
 
   /* Mobile copy bar: hidden while the output panel is on screen. */
-  if ('IntersectionObserver' in window) {
-    var outputBox = el.output.closest('.code-box');
-    new IntersectionObserver(function (entries) {
-      el.copybar.classList.toggle('is-hidden', entries[0].isIntersecting);
-    }).observe(outputBox);
-  } else {
-    el.copybar.classList.remove('is-hidden');
-  }
+  MCControls.copybar(el.copybar, el.output.closest('.code-box'));
 
   /* ------------------------------------------------------------------ */
   /* Init                                                                */
   /* ------------------------------------------------------------------ */
 
   syncControls();
-  renderStops();
+  gradient.render(true);
   update();
 })();

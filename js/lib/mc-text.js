@@ -241,6 +241,7 @@
     spigot: function (run, f) { return expandHex(run.hex, '&') + formatCodes(f, '&'); },
     section: function (run, f) { return expandHex(run.hex, '§') + formatCodes(f, '§'); },
     legacy: function (run, f) { return '&' + run.code + formatCodes(f, '&'); },
+    legacysection: function (run, f) { return '\u00a7' + run.code + formatCodes(f, '\u00a7'); },
     cmi: function (run, f) { return '{#' + run.hex + '}' + formatCodes(f, '&'); }
   };
 
@@ -281,7 +282,7 @@
       protect: opts.protect !== false,
       format: opts.format || 'hex'
     };
-    var legacy = o.format === 'legacy';
+    var legacy = o.format === 'legacy' || o.format === 'legacysection';
 
     var lines = String(text).split(/\r?\n/).map(function (line) {
       var units = colorize(tokenize(line, o.protect), o.mode, o.colors);
@@ -400,8 +401,37 @@
     }
   }
 
+  /* ------------------------------------------------------------------ */
+  /* Text width (Minecraft default font)                                 */
+  /* ------------------------------------------------------------------ */
+
+  /**
+   * Glyph widths in GUI pixels, without the 1px spacing that follows each glyph.
+   * Everything not listed is 5px wide (most letters and digits).
+   */
+  var GLYPH_WIDTHS = {
+    ' ': 3, '!': 1, '"': 3, '\'': 1, '(': 3, ')': 3, '*': 3, ',': 1, '.': 1,
+    ':': 1, ';': 1, '<': 4, '>': 4, '@': 6, 'I': 3, '[': 3, ']': 3, '`': 2,
+    'f': 4, 'i': 1, 'k': 4, 'l': 2, 't': 3, '{': 3, '|': 1, '}': 3, '~': 6
+  };
+
+  /**
+   * Width of a string in GUI pixels, as the Minecraft client draws it.
+   * Bold adds 1px per non-space character.
+   */
+  function pixelWidth(text, bold) {
+    var width = 0;
+    Array.from(String(text)).forEach(function (ch) {
+      var glyph = Object.prototype.hasOwnProperty.call(GLYPH_WIDTHS, ch) ? GLYPH_WIDTHS[ch] : 5;
+      width += glyph + 1 + (bold && ch !== ' ' ? 1 : 0);
+    });
+    return width;
+  }
+
   root.MCText = {
     LEGACY_COLORS: LEGACY_COLORS,
+    pixelWidth: pixelWidth,
+    SPACE_WIDTH: 4,
     normalizeHex: normalizeHex,
     sampleGradient: sampleGradient,
     nearestLegacy: nearestLegacy,

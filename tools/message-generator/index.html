@@ -63,7 +63,7 @@
           <div class="menu-panel" id="tools-menu" hidden>
             <ul class="menu-list">
               <li><a class="menu-link" href="./" aria-current="page" style="--dot: var(--id-aqua)"><span class="menu-dot"></span>Message Generator<span class="menu-status is-live">Live</span></a></li>
-              <li><span class="menu-link is-planned" style="--dot: var(--id-blue)"><span class="menu-dot"></span>MOTD Generator<span class="menu-status">Next</span></span></li>
+              <li><a class="menu-link" href="../motd-generator/" style="--dot: var(--id-blue)"><span class="menu-dot"></span>MOTD Generator<span class="menu-status is-live">Live</span></a></li>
               <li><span class="menu-link is-planned" style="--dot: var(--id-gold)"><span class="menu-dot"></span>Rank Price Calculator<span class="menu-status">Planned</span></span></li>
               <li><span class="menu-link is-planned" style="--dot: var(--id-pink)"><span class="menu-dot"></span>Crate Reward Generator<span class="menu-status">Planned</span></span></li>
               <li><span class="menu-link is-planned" style="--dot: var(--id-green)"><span class="menu-dot"></span>Economy Calculator<span class="menu-status">Planned</span></span></li>
@@ -166,7 +166,7 @@
 
             <div class="field">
               <label class="switch">
-                <input type="checkbox" id="mg-protect" checked>
+                <input type="checkbox" id="mg-protect" name="protect-placeholders" checked>
                 <span class="switch-track" aria-hidden="true"></span>
                 <span class="switch-text">
                   <span class="label">Keep placeholders intact</span>
@@ -315,7 +315,8 @@
         <div class="footer-col">
           <h2>Tools</h2>
           <ul>
-            <li><a href="./" >Message Generator</a></li>
+            <li><a href="./" aria-current="page">Message Generator</a></li>
+            <li><a href="../motd-generator/">MOTD Generator</a></li>
             <li><a href="../../#tools">Roadmap</a></li>
           </ul>
         </div>
@@ -333,6 +334,7 @@
   </footer>
   <script src="../../js/site.js" defer></script>
   <script src="../../js/lib/mc-text.js" defer></script>
+  <script src="../../js/lib/controls.js" defer></script>
   <script src="../../js/tools/message-generator.js" defer></script>
 </body>
 </html>

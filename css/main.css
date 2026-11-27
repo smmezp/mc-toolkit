@@ -730,6 +730,10 @@ a.menu-link[aria-current="page"] {
   }
 }
 
+.feature + .feature {
+  margin-top: 16px;
+}
+
 .feature-copy {
   display: flex;
   flex-direction: column;
@@ -785,7 +789,7 @@ a.menu-link[aria-current="page"] {
   width: 8px;
   height: 8px;
   border-radius: 2px;
-  background: var(--id-aqua);
+  background: var(--id, var(--id-aqua));
 }
 
 .feature-copy .btn {
@@ -795,6 +799,9 @@ a.menu-link[aria-current="page"] {
 
 .feature-spec {
   min-width: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   padding: clamp(20px, 3vw, 32px);
   border-top: 1px solid var(--rule);
   background: var(--night);
@@ -805,6 +812,16 @@ a.menu-link[aria-current="page"] {
     border-top: 0;
     border-left: 1px solid var(--rule);
   }
+}
+
+/* The server list row scales to the card column, not the viewport. */
+.feature-spec {
+  container-type: inline-size;
+}
+
+.feature-spec .serverlist {
+  --gui: min(2px, calc((100cqi - 8px) / 309));
+  padding: calc(var(--gui) * 8) 0;
 }
 
 .spec-caption {
@@ -887,15 +904,19 @@ a.menu-link[aria-current="page"] {
   border-radius: var(--r-frame);
   background: var(--rule);
   overflow: hidden;
-  counter-reset: build 1;
+  counter-reset: build 2;
 }
 
-@media (min-width: 640px) {
+/* A last cell that would leave a hole in the grid spans the gap instead. */
+@media (min-width: 640px) and (max-width: 999px) {
   .roadmap { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .roadmap > li:last-child:nth-child(odd) { grid-column: span 2; }
 }
 
 @media (min-width: 1000px) {
   .roadmap { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .roadmap > li:last-child:nth-child(3n + 1) { grid-column: span 3; }
+  .roadmap > li:last-child:nth-child(3n + 2) { grid-column: span 2; }
 }
 
 .roadmap > li {
@@ -1269,6 +1290,119 @@ a.menu-link[aria-current="page"] {
 
 .mc-screen--plain {
   background: #000;
+}
+
+/* ==================================================================== */
+/* 13b. Server list row (MOTD preview, shared)                          */
+/* One GUI pixel = var(--gui). 2px on desktop, scaled down to fit phones.*/
+/* ==================================================================== */
+
+.serverlist {
+  --gui: min(2px, calc((100vw - 64px) / 310));
+  display: grid;
+  justify-content: center;
+  gap: calc(var(--gui) * 4);
+  padding: calc(var(--gui) * 10) calc(var(--gui) * 4);
+  border-radius: 4px;
+  overflow: hidden;
+  /* Darkened dirt, the classic menu background */
+  background:
+    linear-gradient(rgba(0, 0, 0, 0.72), rgba(0, 0, 0, 0.72)),
+    conic-gradient(#6b4f36 25%, #5a412c 0 50%, #6b4f36 0 75%, #5a412c 0) 0 0 / calc(var(--gui) * 16) calc(var(--gui) * 16);
+  font-family: var(--font-pixel);
+  color: #fff;
+}
+
+.sl-entry {
+  display: grid;
+  grid-template-columns: calc(var(--gui) * 32) calc(var(--gui) * 268);
+  column-gap: calc(var(--gui) * 3);
+  width: calc(var(--gui) * 305);
+  padding: calc(var(--gui) * 2);
+  border: var(--gui) solid transparent;
+  font-size: calc(var(--gui) * 8.4);
+  line-height: calc(var(--gui) * 10);
+}
+
+.sl-entry.is-selected {
+  border-color: #808080;
+  background: rgba(0, 0, 0, 0.85);
+}
+
+.sl-entry.is-dim {
+  opacity: 0.45;
+}
+
+.sl-icon {
+  width: calc(var(--gui) * 32);
+  height: calc(var(--gui) * 32);
+  image-rendering: pixelated;
+}
+
+.sl-body {
+  min-width: 0;
+}
+
+.sl-head {
+  display: flex;
+  justify-content: space-between;
+  gap: calc(var(--gui) * 4);
+  white-space: nowrap;
+}
+
+.sl-name {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: clip;
+}
+
+.sl-status {
+  display: flex;
+  align-items: flex-start;
+  gap: calc(var(--gui) * 3);
+  color: #aaaaaa;
+}
+
+.sl-status .slash {
+  color: #555555;
+}
+
+.sl-ping {
+  display: flex;
+  align-items: flex-end;
+  gap: var(--gui);
+  height: calc(var(--gui) * 7);
+  margin-top: var(--gui);
+}
+
+.sl-ping i {
+  width: var(--gui);
+  background: #2bd92b;
+  box-shadow: var(--gui) var(--gui) 0 #0b5e0b;
+}
+
+.sl-ping i:nth-child(1) { height: calc(var(--gui) * 2); }
+.sl-ping i:nth-child(2) { height: calc(var(--gui) * 3); }
+.sl-ping i:nth-child(3) { height: calc(var(--gui) * 4); }
+.sl-ping i:nth-child(4) { height: calc(var(--gui) * 5); }
+.sl-ping i:nth-child(5) { height: calc(var(--gui) * 6); }
+
+.sl-motd {
+  min-height: calc(var(--gui) * 20);
+  white-space: pre;
+}
+
+.sl-motd .mc-line {
+  height: calc(var(--gui) * 10);
+}
+
+.sl-motd span,
+.sl-head span {
+  text-shadow: var(--gui) var(--gui) 0 var(--mc-shadow, #3f3f3f);
+}
+
+.sl-motd .mc-bold {
+  font-weight: 700;
 }
 
 /* ==================================================================== */

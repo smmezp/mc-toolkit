@@ -13,8 +13,8 @@
 | Tool | Status | What it does |
 | --- | --- | --- |
 | [Message Generator](https://smmezp.github.io/mc-toolkit/tools/message-generator/) | ✅ Live | Gradients, hex colors and formatting. Exports YAML in Hex (`&#RRGGBB`), MiniMessage, Spigot (`&x`), legacy, `§` and CMI formats. |
-| MOTD Generator | 🔜 Next | Two-line server list message with a live server-list preview. |
-| Rank Price Calculator | Planned | Price VIP ranks by perks and audience, compare tiers. |
+| [MOTD Generator](https://smmezp.github.io/mc-toolkit/tools/motd-generator/) | ✅ Live | Two-line server list MOTD with a live preview, width check and centering. Exports for `server.properties`, MiniMOTD, Velocity and hex lines. |
+| Rank Price Calculator | 🔜 Next | Price VIP ranks by perks and audience, compare tiers. |
 | Crate Reward Generator | Planned | Weighted reward tables with real drop odds and config export. |
 | Economy Calculator | Planned | Shop prices, money supply and inflation modeling. |
 | Plugin Config Helper | Planned | Form-based config snippets for popular plugins. |
@@ -30,6 +30,15 @@
 - YAML output with nested keys (`messages.welcome`), lists for multi-line text and correct quote escaping
 - The address bar always holds a shareable link that restores the whole setup
 
+### MOTD Generator highlights
+
+- Server list preview with name, player count, ping and your own icon
+- Width meter using Minecraft's real font metrics; wraps and hides text exactly where the client would
+- Centering with measured spaces (the server list has no centering of its own)
+- Per-line colors, gradients and formatting, with "use this style on the other line"
+- Correct escaping for each target: `\u00A7` in `server.properties`, HOCON for MiniMOTD, TOML for Velocity
+- Server icon check: converts any image to a 64 × 64 PNG, entirely on your device
+
 ## Principles
 
 - **Static only.** HTML, CSS and vanilla JavaScript. No build step, no backend, no database, no paid APIs.
@@ -43,8 +52,10 @@ mc-toolkit/
 ├── index.html                  # Homepage
 ├── 404.html                    # Self-contained "not found" page
 ├── tools/
-│   └── message-generator/
-│       └── index.html          # Each tool lives in its own folder (clean URLs)
+│   ├── message-generator/
+│   │   └── index.html          # Each tool lives in its own folder (clean URLs)
+│   └── motd-generator/
+│       └── index.html
 ├── css/
 │   ├── main.css                # Design tokens, base styles, shared components
 │   └── tool.css                # Form controls and layout for tool pages
@@ -52,9 +63,11 @@ mc-toolkit/
 │   ├── site.js                 # Shared: header, clipboard, toast
 │   ├── home.js                 # Homepage live example
 │   ├── lib/
-│   │   └── mc-text.js          # Minecraft text engine (colors, gradients, serializers)
+│   │   ├── mc-text.js          # Minecraft text engine (colors, gradients, serializers, font widths)
+│   │   └── controls.js         # Shared editor controls (gradient editor, format toolbar, copy bar)
 │   └── tools/
-│       └── message-generator.js
+│       ├── message-generator.js
+│       └── motd-generator.js
 ├── assets/                     # Favicon, app icon, social image
 ├── docs/
 │   └── DESIGN.md               # Design tokens, rules and tool page anatomy
@@ -94,7 +107,7 @@ If you fork the project or use a custom domain, update the absolute URLs in the 
 ## Adding a new tool
 
 1. Create `tools/<tool-name>/index.html` — copy the Message Generator page as a template (header, footer, SEO tags).
-2. Put the tool logic in `js/tools/<tool-name>.js`. Shared, reusable logic goes in `js/lib/`.
+2. Put the tool logic in `js/tools/<tool-name>.js`. Reuse `js/lib/mc-text.js` and `js/lib/controls.js`; anything a second tool could use belongs in `js/lib/`.
 3. Reuse the workspace components in `css/tool.css` (`.workspace`, `.field`, `.segmented`, `.tile`, `.code-box`…) and follow [docs/DESIGN.md](docs/DESIGN.md).
 4. Turn the card on the homepage into a link, and add the URL to `sitemap.xml`.
 
